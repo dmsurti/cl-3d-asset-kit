@@ -1,0 +1,22 @@
+(in-package #:cl-game-models)
+
+(defclass camera ()
+  ((angle :initarg :angle :initform nil :accessor camera-angle)
+   (ratio :initarg :ratio :initform nil :accessor camera-ratio)
+   (neard :initarg :neard :initform nil :accessor camera-neard)
+   (fard :initarg :fard :initform nil :accessor camera-fard)))
+
+(defclass camera-position ()
+  ((eye :initarg :eye :initform nil :accessor camera-eye)
+   (look-at :initarg :look-at :initform nil :accessor camera-look-at)
+   (up :initarg :up :initform nil :accessor camera-up)))
+
+(defclass radar-frustum ()
+  ((nh :initarg :nh :initform nil :accessor frustum-nh)
+   (nw :initarg :nw :initform nil :accessor frustum-nw)
+   (fh :initarg :fh :initform nil :accessor frustum-fh)
+   (fw :initarg :fw :initform nil :accessor frustum-fw)
+   (tang :initarg :tang :initform nil :accessor frustum-tang)
+   (x :initarg :x :initform nil :accessor frustum-x)
+   (y :initarg :y :initform nil :accessor frustum-y)
+   (z :initarg :z :initform nil :accessor frustum-z)))

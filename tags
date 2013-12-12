@@ -1,0 +1,362 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+#:cl-game-models	package.lisp	/^(defpackage #:cl-game-models$/;"	f
+*app-fn*	display.lisp	/^(defparameter *app-fn* nil)$/;"	f
+*aspect*	opengl-pane.lisp	/^(defparameter *aspect* 1.6d0)$/;"	f
+*current-time*	opengl-pane.lisp	/^(defparameter *current-time* 0)$/;"	f
+*display-link-ptr*	display.lisp	/^(defparameter *display-link-ptr* nil)$/;"	f
+*g*	bowling-trajectory.lisp	/^(defparameter *g* 9.81)$/;"	f
+*gfeet*	bowling-trajectory.lisp	/^(defparameter *gfeet* 32.2)$/;"	f
+*last-time*	opengl-pane.lisp	/^(defparameter *last-time* 0)$/;"	f
+*pi*	bowling-trajectory.lisp	/^(defparameter *pi* (\/ 22 7.0))$/;"	f
+*scene-world*	scene-world.lisp	/^(defparameter *scene-world* nil)$/;"	f
+*user-info*	display.lisp	/^(defparameter *user-info* nil)$/;"	f
+-vec	utils.lisp	/^(defun -vec (vec)$/;"	f
+2d->3d	simple-trajectory.lisp	/^(defun 2d->3d (points)$/;"	f
+add-dynamic-primitive-object	scene-world.lisp	/^(defun add-dynamic-primitive-object (scene-world primitive-object)$/;"	f
+add-event-handler	scene-world-fns.lisp	/^(defun add-event-handler (scene-world name event-fn)$/;"	f
+add-frame-block	scene-world.lisp	/^(defun add-frame-block (scene-object frame-block)$/;"	f
+add-frames	scene-world.lisp	/^(defun add-frames (scene-object object-frames)$/;"	f
+add-pose-frames	scene-world-fns.lisp	/^(defun add-pose-frames (scene-object anim root$/;"	f
+add-primitive-object	scene-world.lisp	/^(defun add-primitive-object (scene-world primitive-object)$/;"	f
+add-scene-camera	camera.lisp	/^(defun add-scene-camera (scene camera)$/;"	f
+add-scene-light	scene-world.lisp	/^(defun add-scene-light (scene-world light)$/;"	f
+add-scene-object	scene-world.lisp	/^(defun add-scene-object (scene-world scene-object)$/;"	f
+add-trajectory-frames	scene-world-fns.lisp	/^(defun add-trajectory-frames (ball trajectory mesh root$/;"	f
+add-vertex-frames	scene-world-fns.lisp	/^(defun add-vertex-frames (scene-object anim-path root$/;"	f
+analyze-baseframe	anim-parser.lisp	/^(defun analyze-baseframe (line)$/;"	f
+analyze-bounds	anim-parser.lisp	/^(defun analyze-bounds (line)$/;"	f
+analyze-frame	anim-parser.lisp	/^(defun analyze-frame (line)$/;"	f
+analyze-frame-rate	anim-parser.lisp	/^(defun analyze-frame-rate (line)$/;"	f
+analyze-hierarchy	anim-parser.lisp	/^(defun analyze-hierarchy (line)$/;"	f
+analyze-joints	mesh-parser.lisp	/^(defun analyze-joints (line)$/;"	f
+analyze-map-kd	mtl-parser.lisp	/^(defun analyze-map-kd (line)$/;"	f
+analyze-mesh	mesh-parser.lisp	/^(defun analyze-mesh (line)$/;"	f
+analyze-mtl	obj-parser.lisp	/^(defun analyze-mtl (line)$/;"	f
+analyze-n-anim-comps	anim-parser.lisp	/^(defun analyze-n-anim-comps (line)$/;"	f
+analyze-n-frames	anim-parser.lisp	/^(defun analyze-n-frames (line)$/;"	f
+analyze-n-joints	mesh-parser.lisp	/^(defun analyze-n-joints (line)$/;"	f
+analyze-n-meshes	mesh-parser.lisp	/^(defun analyze-n-meshes (line)$/;"	f
+analyze-n-triangles	mesh-parser.lisp	/^(defun analyze-n-triangles (line)$/;"	f
+analyze-n-vertices	mesh-parser.lisp	/^(defun analyze-n-vertices (line)$/;"	f
+analyze-n-weights	mesh-parser.lisp	/^(defun analyze-n-weights (line)$/;"	f
+analyze-new-mtl	mtl-parser.lisp	/^(defun analyze-new-mtl (line)$/;"	f
+analyze-shader	mesh-parser.lisp	/^(defun analyze-shader (line)$/;"	f
+analyze-version	md5-parser.lisp	/^(defun analyze-version (line)$/;"	f
+analyze-wfobj	obj-parser.lisp	/^(defun analyze-wfobj (line)$/;"	f
+analyze-wft	obj-parser.lisp	/^(defun analyze-wft (line)$/;"	f
+analyze-wfv	obj-parser.lisp	/^(defun analyze-wfv (line)$/;"	f
+analyze-wfvn	obj-parser.lisp	/^(defun analyze-wfvn (line)$/;"	f
+analyze-wfvt	obj-parser.lisp	/^(defun analyze-wfvt (line)$/;"	f
+angle->radians	bowling-trajectory.lisp	/^(defun angle->radians (angle)$/;"	f
+anim-info	common.lisp	/^(defclass anim-info ()$/;"	f
+animate	frames.lisp	/^(defun animate (md5anim anim-info dt)$/;"	f
+apply-transformations	ui.lisp	/^(defgeneric apply-transformations (scene-object)$/;"	f
+apply-transformations	ui.lisp	/^(defmethod apply-transformations ((scene-object md5-scene-object))$/;"	f
+apply-transformations	ui.lisp	/^(defmethod apply-transformations ((scene-object scene-object))$/;"	f
+apply-translation-deltas	scene-world.lisp	/^(defun apply-translation-deltas (scene-object &optional anim-info)$/;"	f
+archive-objects	archiver.lisp	/^(defun archive-objects (objects out-dir meta-file)$/;"	f
+archive-primitive-objects	archiver.lisp	/^(defun archive-primitive-objects (scene-world out-dir meta-file)$/;"	f
+archive-scene-objects	archiver.lisp	/^(defun archive-scene-objects (scene-world out-dir meta-file)$/;"	f
+assign-current-camera	camera.lisp	/^(defun assign-current-camera (scene cam-id)$/;"	f
+axis-box	mesh.lisp	/^(defclass axis-box ()$/;"	f
+baseframe?	anim-parser.lisp	/^(defun baseframe? (line) (analyze-baseframe line))$/;"	f
+bounds?	anim-parser.lisp	/^(defun bounds? (line) (analyze-bounds line))$/;"	f
+box	anim.lisp	/^(defclass box ()$/;"	f
+boxes-intersect?	collision.lisp	/^(defun boxes-intersect? (box1 box2)$/;"	f
+build-all-frame-skeletons	frames.lisp	/^(defun build-all-frame-skeletons (md5anim)$/;"	f
+build-atlas-lattice	obj-loader.lisp	/^(defun build-atlas-lattice (wf-lattice)$/;"	f
+build-axis-box	collision.lisp	/^(defun build-axis-box (mesh vertices)$/;"	f
+build-comparator	collision.lisp	/^(defun build-comparator (slot-fn)$/;"	f
+build-frame-block	scene-world-fns.lisp	/^(defun build-frame-block (scene-object anim-nframes$/;"	f
+build-frame-skeleton	frames.lisp	/^(defun build-frame-skeleton (md5anim anim-comps)$/;"	f
+build-lattice	dae-parser.lisp	/^(defun build-lattice (mfaces mvertices mtexels tex-key lattice-name)$/;"	f
+build-lattice-triangles	dae-parser.lisp	/^(defun build-lattice-triangles (faces ivertices)$/;"	f
+build-lattice-vertices	dae-parser.lisp	/^(defun build-lattice-vertices (faces vertices texels)$/;"	f
+build-scaled-triangles-for-atlas-lattice	obj-loader.lisp	/^(defun build-scaled-triangles-for-atlas-lattice (triangles mapped-vertices)$/;"	f
+build-trajectory-vertex-frames	scene-world-fns.lisp	/^(defun build-trajectory-vertex-frames (mesh root nframes start-frame)$/;"	f
+build-triangles	obj-loader.lisp	/^(defun build-triangles (triangles)$/;"	f
+build-triangles-for-atlas-lattice	obj-loader.lisp	/^(defun build-triangles-for-atlas-lattice (triangles mapped-vertices)$/;"	f
+build-triangles-for-normals	dae-parser.lisp	/^(defun build-triangles-for-normals (triangles)$/;"	f
+build-vertex-frames	scene-world-fns.lisp	/^(defun build-vertex-frames (anim-path root start-frame)$/;"	f
+build-vertexes-with-textures	obj-loader.lisp	/^(defun build-vertexes-with-textures (vertexes triangles textures)$/;"	f
+build-vertexes-with-textures-for-atlas-lattice	obj-loader.lisp	/^(defun build-vertexes-with-textures-for-atlas-lattice (vertexes triangles textures)$/;"	f
+build-wf-axis-box	collision.lisp	/^(defun build-wf-axis-box (mesh)$/;"	f
+camera	culling.lisp	/^(defclass camera ()$/;"	f
+camera-perspective	camera.lisp	/^(defclass camera-perspective ()$/;"	f
+camera-position	culling.lisp	/^(defclass camera-position ()$/;"	f
+camera-view	camera.lisp	/^(defclass camera-view ()$/;"	f
+change-camera-perspective	camera.lisp	/^(defun change-camera-perspective (ip scene cam-id)$/;"	f
+change-camera-perspective-fovy	camera.lisp	/^(defun change-camera-perspective-fovy (ifovy scene cam-id)$/;"	f
+change-camera-view	camera.lisp	/^(defun change-camera-view (iv scene cam-id)$/;"	f
+change-camera-view-center	camera.lisp	/^(defun change-camera-view-center (ic scene cam-id)$/;"	f
+change-camera-view-eye	camera.lisp	/^(defun change-camera-view-eye (ie scene cam-id)$/;"	f
+change-dynamic-primitive-object-sound-status	scene-world-fns.lisp	/^(defun change-dynamic-primitive-object-sound-status (name scene-world status)$/;"	f
+change-dynamic-primitive-object-visibility	scene-world-fns.lisp	/^(defun change-dynamic-primitive-object-visibility (name scene-world visibility)$/;"	f
+change-scene-object-visibility	scene-world-fns.lisp	/^(defun change-scene-object-visibility (name scene-world visibility)$/;"	f
+clean-archive-dir	archiver.lisp	/^(defun clean-archive-dir (dir)$/;"	f
+clear-frames	scene-world-fns.lisp	/^(defgeneric clear-frames (scene-object)$/;"	f
+clear-frames	scene-world-fns.lisp	/^(defmethod clear-frames ((scene-object md5-scene-object))$/;"	f
+clear-frames	scene-world-fns.lisp	/^(defmethod clear-frames ((scene-object scene-object)))$/;"	f
+clear-scene-objects	scene-world-fns.lisp	/^(defun clear-scene-objects (scene-world)$/;"	f
+coerce-array-to-list	utils.lisp	/^(defun coerce-array-to-list (in-array) $/;"	f
+comp	simple-trajectory.lisp	/^(defun comp (sq delta dt p0 p1 p2)$/;"	f
+comp0	simple-trajectory.lisp	/^(defun comp0 (sq coord)$/;"	f
+comp1	simple-trajectory.lisp	/^(defun comp1 (delta dt coord)$/;"	f
+comp2	simple-trajectory.lisp	/^(defun comp2 (dt coord)$/;"	f
+compute-after-landing	simple-trajectory.lisp	/^(defun compute-after-landing (x1 x2)$/;"	f
+compute-anim-ori	frames.lisp	/^(defun compute-anim-ori (flags skel-index j anim-comps)$/;"	f
+compute-anim-pos	frames.lisp	/^(defun compute-anim-pos (flags skel-index j anim-comps)$/;"	f
+compute-bowling-trajectory	bowling-trajectory.lisp	/^(defun compute-bowling-trajectory (h xpeak swivel1 swivel2 angle velocity factor)$/;"	f
+compute-bowling-trajectory-after-pitching	bowling-trajectory.lisp	/^(defun compute-bowling-trajectory-after-pitching (xpeak velocity angle swivel)$/;"	f
+compute-bowling-trajectory-after-pitching2	bowling-trajectory.lisp	/^(defun compute-bowling-trajectory-after-pitching2 (h xpeak1 xpeak swivel vel0x &optional all-points)$/;"	f
+compute-bowling-trajectory-before-pitching	bowling-trajectory.lisp	/^(defun compute-bowling-trajectory-before-pitching (h xpeak swivel vel0x)$/;"	f
+compute-bowling-trajectory2	bowling-trajectory.lisp	/^(defun compute-bowling-trajectory2 (h1 xpeak1 swivel1 h2 xpeak2 swivel2 velocity)$/;"	f
+compute-bowling-trajectory3	simple-trajectory.lisp	/^(defun compute-bowling-trajectory3 (xpeak1 h xpeak2)$/;"	f
+compute-control-point	simple-trajectory.lisp	/^(defun compute-control-point (qx qy sx sy tx ty sq delta dt)$/;"	f
+compute-control-point-coord	simple-trajectory.lisp	/^(defun compute-control-point-coord (q p0 p2 sq delta dt)$/;"	f
+compute-normals	obj-loader.lisp	/^(defun compute-normals (vertexes triangles &optional normals)$/;"	f
+compute-quat-ori-w	utils.lisp	/^(defun compute-quat-ori-w (ori)$/;"	f
+compute-stroke-trajectory	bowling-trajectory.lisp	/^(defun compute-stroke-trajectory (h xpeak swivel vel0x yrot)$/;"	f
+compute-stroke-trajectory-after-landing	bowling-trajectory.lisp	/^(defun compute-stroke-trajectory-after-landing (x1 x2 swivel vel0x)$/;"	f
+compute-stroke-trajectory-before-landing	bowling-trajectory.lisp	/^(defun compute-stroke-trajectory-before-landing (h xpeak swivel velocity)$/;"	f
+compute-stroke-trajectory2	bowling-trajectory.lisp	/^(defun compute-stroke-trajectory2 (h xpeak swivel velocity x2 yrot ground-stroke override start-height)$/;"	f
+compute-stroke-trajectory3	simple-trajectory.lisp	/^(defun compute-stroke-trajectory3 (h xpeak x2 yrot ground-stroke override start-height)$/;"	f
+create-scene-object-archive	archiver.lisp	/^(defun create-scene-object-archive (scene-object archive-name out-dir)$/;"	f
+cull-triangles	meshes.lisp	/^(defun cull-triangles (mesh culled-vertices)$/;"	f
+cull-vertices	meshes.lisp	/^(defun cull-vertices (vertices camera camera-position frustum &optional scale tr)$/;"	f
+draw-mesh	ui.lisp	/^(defun draw-mesh (mesh texture-id canvas &optional mesh-frame)$/;"	f
+execute-transformations	ui.lisp	/^(defun execute-transformations (transformation &optional anim-info)$/;"	f
+few-extra-trajectory-points	bowling-trajectory.lisp	/^(defun few-extra-trajectory-points (h xpeak1 xpeak swivel vel0x)$/;"	f
+file-lines	utils.lisp	/^(defun file-lines (file)$/;"	f
+filter	utils.lisp	/^(defun filter (fn lst)$/;"	f
+filter-culled-vertices	meshes.lisp	/^(defun filter-culled-vertices (culled-vertices)$/;"	f
+find-curr-mesh-frame	scene-world.lisp	/^(defun find-curr-mesh-frame (mesh-name scene-object)$/;"	f
+find-dynamic-primitive-object	scene-world-fns.lisp	/^(defun find-dynamic-primitive-object (obj-name scene-world)$/;"	f
+find-mesh	scene-world.lisp	/^(defun find-mesh (mesh-name scene-object)$/;"	f
+find-node-with-id-attr	dae-parser.lisp	/^(defun find-node-with-id-attr (parent id-attr)$/;"	f
+find-node-with-tag-name	dae-parser.lisp	/^(defun find-node-with-tag-name (parent tag-name)$/;"	f
+find-nodes-with-tag-name	dae-parser.lisp	/^(defun find-nodes-with-tag-name (parent tag-name)$/;"	f
+find-primitive-object	scene-world-fns.lisp	/^(defun find-primitive-object (obj-name scene-world)$/;"	f
+find-scene-object	scene-world-fns.lisp	/^(defun find-scene-object (obj-name scene-world)$/;"	f
+find-vertex-with-original-index	dae-parser.lisp	/^(defun find-vertex-with-original-index (i ivertices)$/;"	f
+flag-set?	frames.lisp	/^(defun flag-set? (flags bit)$/;"	f
+frame	anim.lisp	/^(defclass frame ()$/;"	f
+frame-rate?	anim-parser.lisp	/^(defun frame-rate? (line) (analyze-frame-rate line))$/;"	f
+frame?	anim-parser.lisp	/^(defun frame? (line) (analyze-frame line))$/;"	f
+get-current-camera	camera.lisp	/^(defun get-current-camera (scene)$/;"	f
+get-full-path	scene-world-fns.lisp	/^(defun get-full-path (file root)$/;"	f
+get-scaled-vertex-index	obj-loader.lisp	/^(defun get-scaled-vertex-index (old-index mapped-vertices)$/;"	f
+get-scene-camera	camera.lisp	/^(defun get-scene-camera (scene cam-id)$/;"	f
+get-scene-world	scene-world.lisp	/^(defun get-scene-world () *scene-world*)$/;"	f
+gl-double	vectors.lisp	/^(deftype gl-double () 'double-float)$/;"	f
+gl-double-vector	vectors.lisp	/^(deftype gl-double-vector (n) `(opengl:gl-vector :double ,n))$/;"	f
+gl-double-vector	vectors.lisp	/^(defun gl-double-vector (&rest contents)$/;"	f
+gl-float-vector	vectors.lisp	/^(defun gl-float-vector (type contents)$/;"	f
+gl-indexes	vectors.lisp	/^(defun gl-indexes (indices)$/;"	f
+gl-single	vectors.lisp	/^(deftype gl-single () 'single-float)$/;"	f
+gl-single-vector	vectors.lisp	/^(deftype gl-single-vector (n) `(opengl:gl-vector :float ,n))$/;"	f
+gl-single-vector	vectors.lisp	/^(defun gl-single-vector (&rest contents)$/;"	f
+gl-texels	vectors.lisp	/^(defun gl-texels (vertices &optional (scale 1.0) (flip nil))$/;"	f
+gl-vertex	vectors.lisp	/^(defun gl-vertex (x y z w)$/;"	f
+gl-vertexes	vectors.lisp	/^(defun gl-vertexes (vertices)$/;"	f
+group	utils.lisp	/^(defun group (source n)$/;"	f
+handle-event	scene-world-fns.lisp	/^(defun handle-event (scene-world event-name event-data)$/;"	f
+hierarchy?	anim-parser.lisp	/^(defun hierarchy? (line) (analyze-hierarchy line))$/;"	f
+image-data-array	utils.lisp	/^(defun image-data-array (img-data)$/;"	f
+init-opengl	ui.lisp	/^(defun init-opengl (canvas)$/;"	f
+initialize-a-primitive-object	opengl-pane.lisp	/^(defun initialize-a-primitive-object (canvas primitive-object)$/;"	f
+initialize-a-scene-object	opengl-pane.lisp	/^(defun initialize-a-scene-object (canvas scene-object)$/;"	f
+initialize-anim-info	scene-world.lisp	/^(defun initialize-anim-info (scene-object fps)$/;"	f
+initialize-scene	scene-world.lisp	/^(defun initialize-scene ()$/;"	f
+initialize-scene-world	opengl-pane.lisp	/^(defun initialize-scene-world (canvas)$/;"	f
+interpolate-skeletons	frames.lisp	/^(defun interpolate-skeletons (frame1 frame2 njoints interp)$/;"	f
+joint	mesh.lisp	/^(defclass joint ()$/;"	f
+joints?	mesh-parser.lisp	/^(defun joints? (line) (analyze-joints line))$/;"	f
+light	lights.lisp	/^(defclass light ()$/;"	f
+load-a-primitive-object-buffers	ui.lisp	/^(defun load-a-primitive-object-buffers (scene-object &optional dynamic)$/;"	f
+load-a-scene-object-buffers	ui.lisp	/^(defun load-a-scene-object-buffers (scene-object)$/;"	f
+load-a-scene-object-textures	ui.lisp	/^(defun load-a-scene-object-textures (scene-object)$/;"	f
+load-anim	anim-loader.lisp	/^(defun load-anim (file)$/;"	f
+load-atlas-obj	obj-loader.lisp	/^(defun load-atlas-obj (obj-file mtl-file)$/;"	f
+load-dae	dae-loader.lisp	/^(defun load-dae (file)$/;"	f
+load-dynamic-primitive-object-buffers	ui.lisp	/^(defun load-dynamic-primitive-object-buffers (canvas scene-world)$/;"	f
+load-mesh	mesh-loader.lisp	/^(defun load-mesh (file)$/;"	f
+load-mtl	mtl-loader.lisp	/^(defun load-mtl (file)$/;"	f
+load-obj	obj-loader.lisp	/^(defun load-obj (file)$/;"	f
+load-primitive-object-buffers	ui.lisp	/^(defun load-primitive-object-buffers (canvas scene-world)$/;"	f
+load-scene-object-buffers	ui.lisp	/^(defun load-scene-object-buffers (canvas scene-world)$/;"	f
+load-texture	textures.lisp	/^(defun load-texture (path fn &optional (scale 1.0))$/;"	f
+load-textures	ui.lisp	/^(defun load-textures (canvas scene-world)$/;"	f
+make-anim-info	common.lisp	/^(defun make-anim-info (fps)$/;"	f
+make-camera	culling-fns.lisp	/^(defun make-camera (angle ratio near far)$/;"	f
+make-camera-perspective	camera.lisp	/^(defun make-camera-perspective (fovy aspect znear zfar)$/;"	f
+make-camera-position	culling-fns.lisp	/^(defun make-camera-position (eye look-at up)$/;"	f
+make-camera-view	camera.lisp	/^(defun make-camera-view (eye center up)$/;"	f
+make-frustum	culling-fns.lisp	/^(defun make-frustum (camera camera-position)$/;"	f
+make-gl-double-vector	vectors.lisp	/^(defun make-gl-double-vector (size)$/;"	f
+make-gl-single-vector	vectors.lisp	/^(defun make-gl-single-vector (size)$/;"	f
+make-gl-unsigned-int-vector	vectors.lisp	/^(defun make-gl-unsigned-int-vector (size)$/;"	f
+make-light	lights.lisp	/^(defun make-light (num position ambient diffuse specular spot-direction spot-intensity)$/;"	f
+make-lines-mesh	meshes.lisp	/^(defun make-lines-mesh (points vfn ifn &optional (line-color '(1.0 1.0 1.0)) $/;"	f
+make-material	lights.lisp	/^(defun make-material (ambient diffuse specular shininess emission)$/;"	f
+make-md5-scene-object	scene-world-fns.lisp	/^(defun make-md5-scene-object (mesh root texture-fn name fps)$/;"	f
+make-md5-vertex-scene-object	scene-world-fns.lisp	/^(defun make-md5-vertex-scene-object (name mesh root texture fps)$/;"	f
+make-primitive-scene-object	scene-world-fns.lisp	/^(defun make-primitive-scene-object (name meshes &optional archive-name archive? triangulated $/;"	f
+make-scene	scene-world.lisp	/^(defun make-scene ()$/;"	f
+make-scene-camera	camera.lisp	/^(defun make-scene-camera (perspective view)$/;"	f
+make-scene-object	scene-world-fns.lisp	/^(defun make-scene-object (mesh-name root texture name$/;"	f
+make-scene-object-with-lattice	scene-world-fns.lisp	/^(defun make-scene-object-with-lattice (lattice texture name$/;"	f
+make-scene-object-with-textures-map	scene-world-fns.lisp	/^(defun make-scene-object-with-textures-map$/;"	f
+make-vector	meshes.lisp	/^(defun make-vector (x y z)$/;"	f
+map-kd?	mtl-parser.lisp	/^(defun map-kd? (line) (analyze-map-kd line))$/;"	f
+material	lights.lisp	/^(defclass material ()$/;"	f
+md5-scene-object	scene-world.lisp	/^(defclass md5-scene-object (scene-object)$/;"	f
+md5anim	anim.lisp	/^(defclass md5anim ()$/;"	f
+md5mesh	mesh.lisp	/^(defclass md5mesh (mesh)$/;"	f
+md5meshes	mesh.lisp	/^(defclass md5meshes (meshes)$/;"	f
+mesh	mesh.lisp	/^(defclass mesh ()$/;"	f
+mesh-archive-info	archiver.lisp	/^(defun mesh-archive-info (mesh)$/;"	f
+mesh-ends?	mesh-parser.lisp	/^(defun mesh-ends? (line)$/;"	f
+mesh-triangle	mesh.lisp	/^(defclass mesh-triangle ()$/;"	f
+mesh-vbo	ui.lisp	/^(defgeneric mesh-vbo (mesh)$/;"	f
+mesh-vbo	ui.lisp	/^(defmethod mesh-vbo ((mesh md5mesh)) $/;"	f
+mesh-vbo	ui.lisp	/^(defmethod mesh-vbo ((mesh mesh)) $/;"	f
+mesh-vbo-data	ui.lisp	/^(defgeneric mesh-vbo-data (mesh)$/;"	f
+mesh-vbo-data	ui.lisp	/^(defmethod mesh-vbo-data ((mesh md5mesh)) $/;"	f
+mesh-vbo-data	ui.lisp	/^(defmethod mesh-vbo-data ((mesh mesh)) $/;"	f
+mesh-vertex	mesh.lisp	/^(defclass mesh-vertex ()$/;"	f
+mesh-weight	mesh.lisp	/^(defclass mesh-weight ()$/;"	f
+mesh?	mesh-parser.lisp	/^(defun mesh? (line) (analyze-mesh line))$/;"	f
+meshes	mesh.lisp	/^(defclass meshes () $/;"	f
+move-to-next-frame-block	scene-world-fns.lisp	/^(defun move-to-next-frame-block (scene-object)$/;"	f
+mtl?	obj-parser.lisp	/^(defun mtl? (line) (analyze-mtl line))$/;"	f
+n-anim-comps?	anim-parser.lisp	/^(defun n-anim-comps? (line) (analyze-n-anim-comps line))$/;"	f
+n-frames?	anim-parser.lisp	/^(defun n-frames? (line) (analyze-n-frames line))$/;"	f
+n-joints?	mesh-parser.lisp	/^(defun n-joints? (line) (analyze-n-joints line))$/;"	f
+n-meshes?	mesh-parser.lisp	/^(defun n-meshes? (line) (analyze-n-meshes line))$/;"	f
+n-triangles?	mesh-parser.lisp	/^(defun n-triangles? (line) (analyze-n-triangles line))$/;"	f
+n-vertices?	mesh-parser.lisp	/^(defun n-vertices? (line) (analyze-n-vertices line))$/;"	f
+n-weights?	mesh-parser.lisp	/^(defun n-weights? (line) (analyze-n-weights line))$/;"	f
+new-mtl?	mtl-parser.lisp	/^(defun new-mtl? (line) (analyze-new-mtl line))$/;"	f
+node-data	dae-parser.lisp	/^(defun node-data (element)$/;"	f
+node-type	dae-parser.lisp	/^(defun node-type (element)$/;"	f
+parse-baseframe	anim-parser.lisp	/^(defun parse-baseframe (lines)$/;"	f
+parse-baseframe-info	anim-parser.lisp	/^(defun parse-baseframe-info (line) $/;"	f
+parse-bounds	anim-parser.lisp	/^(defun parse-bounds (lines)$/;"	f
+parse-bounds-info	anim-parser.lisp	/^(defun parse-bounds-info (line) $/;"	f
+parse-dae	dae-parser.lisp	/^(defun parse-dae (dom)$/;"	f
+parse-frame	anim-parser.lisp	/^(defun parse-frame (line) (parse-integer (analyze-frame line)))$/;"	f
+parse-frame-details	anim-parser.lisp	/^(defun parse-frame-details (lines)$/;"	f
+parse-frame-info	anim-parser.lisp	/^(defun parse-frame-info (line) $/;"	f
+parse-frame-rate	anim-parser.lisp	/^(defun parse-frame-rate (line) (parse-integer (analyze-frame-rate line)))$/;"	f
+parse-g-integer	obj-parser.lisp	/^(defun parse-g-integer (nv str)$/;"	f
+parse-geometries	dae-parser.lisp	/^(defun parse-geometries (dom) $/;"	f
+parse-geometry	dae-parser.lisp	/^(defun parse-geometry (geometry materials)$/;"	f
+parse-hierarchy	anim-parser.lisp	/^(defun parse-hierarchy (lines)$/;"	f
+parse-hierarchy-info	anim-parser.lisp	/^(defun parse-hierarchy-info (line) $/;"	f
+parse-joint-info	mesh-parser.lisp	/^(defun parse-joint-info (line) $/;"	f
+parse-joints	mesh-parser.lisp	/^(defun parse-joints (lines)$/;"	f
+parse-map-kd	mtl-parser.lisp	/^(defun parse-map-kd (line) (string-trim '(#\\Space) (analyze-map-kd line)))$/;"	f
+parse-materials	dae-parser.lisp	/^(defun parse-materials (dom)$/;"	f
+parse-mesh-triangle-info	mesh-parser.lisp	/^(defun parse-mesh-triangle-info (line)$/;"	f
+parse-mesh-vertex-info	mesh-parser.lisp	/^(defun parse-mesh-vertex-info (line)$/;"	f
+parse-mesh-weight-info	mesh-parser.lisp	/^(defun parse-mesh-weight-info (line)$/;"	f
+parse-mtl	obj-parser.lisp	/^(defun parse-mtl (line)$/;"	f
+parse-n-anim-comps	anim-parser.lisp	/^(defun parse-n-anim-comps (line) (parse-integer (analyze-n-anim-comps line)))$/;"	f
+parse-n-frames	anim-parser.lisp	/^(defun parse-n-frames (line) (parse-integer (analyze-n-frames line)))$/;"	f
+parse-n-joints	mesh-parser.lisp	/^(defun parse-n-joints (line) (parse-integer (analyze-n-joints line)))$/;"	f
+parse-n-meshes	mesh-parser.lisp	/^(defun parse-n-meshes (line) (parse-integer (analyze-n-meshes line)))$/;"	f
+parse-n-triangles	mesh-parser.lisp	/^(defun parse-n-triangles (line) (parse-integer (analyze-n-triangles line)))$/;"	f
+parse-n-vertices	mesh-parser.lisp	/^(defun parse-n-vertices (line) (parse-integer (analyze-n-vertices line)))$/;"	f
+parse-n-weights	mesh-parser.lisp	/^(defun parse-n-weights (line) (parse-integer (analyze-n-weights line)))$/;"	f
+parse-new-mtl	mtl-parser.lisp	/^(defun parse-new-mtl (line) (string-trim '(#\\Space) (analyze-new-mtl line)))$/;"	f
+parse-shader	mesh-parser.lisp	/^(defun parse-shader (line) (analyze-shader line))$/;"	f
+parse-texels	dae-parser.lisp	/^(defun parse-texels (geometry)$/;"	f
+parse-triangle	dae-parser.lisp	/^(defun parse-triangle (triangle)$/;"	f
+parse-triangles	dae-parser.lisp	/^(defun parse-triangles (geometry)$/;"	f
+parse-triangles	mesh-parser.lisp	/^(defun parse-triangles (lines)$/;"	f
+parse-version	md5-parser.lisp	/^(defun parse-version (line) (parse-integer (analyze-version line)))$/;"	f
+parse-vertices	dae-parser.lisp	/^(defun parse-vertices (geometry)$/;"	f
+parse-vertices	mesh-parser.lisp	/^(defun parse-vertices (lines)$/;"	f
+parse-weights	mesh-parser.lisp	/^(defun parse-weights (lines)$/;"	f
+parse-wfobj	obj-parser.lisp	/^(defun parse-wfobj (line) (analyze-wfobj line))$/;"	f
+parse-wft	obj-parser.lisp	/^(defun parse-wft (line nv nvt nvn)$/;"	f
+parse-wfv	obj-parser.lisp	/^(defun parse-wfv (line)$/;"	f
+parse-wfvn	obj-parser.lisp	/^(defun parse-wfvn (line)$/;"	f
+parse-wfvt	obj-parser.lisp	/^(defun parse-wfvt (line)$/;"	f
+point-in-frustum	culling-fns.lisp	/^(defun point-in-frustum (p camera camera-position frustum)$/;"	f
+prepare-all-md5-vertex-meshes	meshes.lisp	/^(defun prepare-all-md5-vertex-meshes (wfmeshes frames)$/;"	f
+prepare-all-meshes	meshes.lisp	/^(defun prepare-all-meshes (md5anim md5mesh vfn ifn tfn)$/;"	f
+prepare-all-meshes2	meshes.lisp	/^(defun prepare-all-meshes2 (md5anim md5mesh camera camera-position frustum vfn ifn tfn &optional scale tr)$/;"	f
+prepare-axis-box	collision.lisp	/^(defun prepare-axis-box (frames &key (iscale '(1.0 1.0 1.0))$/;"	f
+prepare-mesh	meshes.lisp	/^(defun prepare-mesh (wfmesh vfn ifn tfn)$/;"	f
+prepare-mesh-indices	meshes.lisp	/^(defun prepare-mesh-indices (mesh)$/;"	f
+prepare-mesh-indices2	meshes.lisp	/^(defun prepare-mesh-indices2 (culled-triangles)$/;"	f
+prepare-mesh-normals	meshes.lisp	/^(defun prepare-mesh-normals (mesh)$/;"	f
+prepare-mesh-vertices	meshes.lisp	/^(defun prepare-mesh-vertices (mesh &optional frame)$/;"	f
+prepare-mesh2	meshes.lisp	/^(defun prepare-mesh2 (wfmesh camera camera-position frustum vfn ifn tfn )$/;"	f
+quadratic-bezier	simple-trajectory.lisp	/^(defun quadratic-bezier (sx sy qx qy tx ty &optional (start 0.0) (end 1.0)) $/;"	f
+quat-dot-product	utils.lisp	/^(defun quat-dot-product (qa qb)$/;"	f
+quat-mult-quat	utils.lisp	/^(defun quat-mult-quat (qa qb)$/;"	f
+quat-mult-vec	utils.lisp	/^(defun quat-mult-vec (q v)$/;"	f
+quat-normalize	utils.lisp	/^(defun quat-normalize (q)$/;"	f
+quat-rotate-point	utils.lisp	/^(defun quat-rotate-point (parent-ori ori)$/;"	f
+quat-slerp	utils.lisp	/^(defun quat-slerp (ori1 ori2 interp)$/;"	f
+radar-frustum	culling.lisp	/^(defclass radar-frustum ()$/;"	f
+radians->angle	bowling-trajectory.lisp	/^(defun radians->angle (radians)$/;"	f
+range	utils.lisp	/^(defun range (s e &optional (d 1))$/;"	f
+redisplay-canvas	opengl-pane.lisp	/^(defun redisplay-canvas (canvas &rest ignore)$/;"	f
+remove-primitive-object	scene-world-fns.lisp	/^(defun remove-primitive-object (obj-name scene-world)$/;"	f
+remove-scene-object	scene-world-fns.lisp	/^(defun remove-scene-object (obj-name scene-world)$/;"	f
+render-dynamic-primitive-object	ui.lisp	/^(defun render-dynamic-primitive-object (primitive-object scene-world canvas dt)$/;"	f
+render-primitive-object	ui.lisp	/^(defun render-primitive-object (primitive-object scene-world canvas dt)$/;"	f
+render-scene-object	ui.lisp	/^(defgeneric render-scene-object (scene-object scene-world canvas dt) $/;"	f
+render-scene-object	ui.lisp	/^(defmethod render-scene-object ((scene-object md5-scene-object) (scene-world scene) (canvas opengl:opengl-pane) dt)$/;"	f
+render-scene-object	ui.lisp	/^(defmethod render-scene-object ((scene-object scene-object) (scene-world scene) (canvas opengl:opengl-pane) dt)$/;"	f
+render-scene-objects	ui.lisp	/^(defun render-scene-objects (scene-objects scene-world render-fn canvas dt)$/;"	f
+resize-canvas	opengl-pane.lisp	/^(defun resize-canvas (canvas x y width height)$/;"	f
+scalar-vec1*vec2	utils.lisp	/^(defun scalar-vec1*vec2 (vec1 vec2)$/;"	f
+scale-vertices	collision.lisp	/^(defun scale-vertices (vertices scale)$/;"	f
+scene	scene-world.lisp	/^(defclass scene ()$/;"	f
+scene-camera	camera.lisp	/^(defclass scene-camera ()$/;"	f
+scene-object	scene-world.lisp	/^(defclass scene-object ()$/;"	f
+shader?	mesh-parser.lisp	/^(defun shader? (line) (analyze-shader line))$/;"	f
+sort-vertices	collision.lisp	/^(defun sort-vertices (vertices slot-fn)$/;"	f
+specify-delta-fn	scene-world.lisp	/^(defun specify-delta-fn (scene-object delta-fn)$/;"	f
+specify-frame-fn	scene-world.lisp	/^(defun specify-frame-fn (scene-object frame-fn)$/;"	f
+specify-rotation	scene-world.lisp	/^(defun specify-rotation (scene-object rotation)$/;"	f
+specify-scale	scene-world.lisp	/^(defun specify-scale (scene-object scale)$/;"	f
+specify-translation	scene-world.lisp	/^(defun specify-translation (scene-object translation)$/;"	f
+specify-translation-deltas	scene-world.lisp	/^(defun specify-translation-deltas (scene-object deltas)$/;"	f
+start-animation-with-vsync	display.lisp	/^(defun start-animation-with-vsync (app-fn)$/;"	f
+stop-animation-with-vsync	display.lisp	/^(defun stop-animation-with-vsync (fn)$/;"	f
+test-create-display-link-for-active-displays	display.lisp	/^(defun test-create-display-link-for-active-displays ()$/;"	f
+test-cvd-creation	display.lisp	/^(defun test-cvd-creation ()$/;"	f
+test-display-link	display.lisp	/^(defun test-display-link ()$/;"	f
+test-display-link%	display.lisp	/^(defun test-display-link% ()$/;"	f
+tex-uv	mesh.lisp	/^(defclass tex-uv ()$/;"	f
+texture	textures.lisp	/^(defclass texture ()$/;"	f
+tilt-angle	bowling-trajectory.lisp	/^(defun tilt-angle (initial-velocity range)$/;"	f
+translate-vertices	collision.lisp	/^(defun translate-vertices (vertices translation)$/;"	f
+update-anim-info	scene-world-fns.lisp	/^(defun update-anim-info (scene-object scene-world dt)$/;"	f
+update-dynamic-primitive-object	scene-world-fns.lisp	/^(defun update-dynamic-primitive-object (name scene-world imeshes itranslation iplay-sound)$/;"	f
+update-frame-block-transformations	scene-world-fns.lisp	/^(defun update-frame-block-transformations (frame-block event-data)$/;"	f
+update-mapped-buffer	ui.lisp	/^(defun update-mapped-buffer (mapped-buffer n vertices &optional show-log)$/;"	f
+update-mapped-index-buffer	ui.lisp	/^(defun update-mapped-index-buffer (mapped-buffer n vertices)$/;"	f
+vec	mesh.lisp	/^(defclass vec ()$/;"	f
+vec*k	utils.lisp	/^(defun vec*k (vec k)$/;"	f
+vec-normalize	utils.lisp	/^(defun vec-normalize (q)$/;"	f
+vec1*vec2	utils.lisp	/^(defun vec1*vec2 (vec1 vec2)$/;"	f
+vec1-vec2	utils.lisp	/^(defun vec1-vec2 (vec1 vec2)$/;"	f
+version?	md5-parser.lisp	/^(defun version? (line) (analyze-version line))$/;"	f
+wfmesh	mesh.lisp	/^(defclass wfmesh (mesh) ())$/;"	f
+wfobj?	obj-parser.lisp	/^(defun wfobj? (line) (analyze-wfobj line))$/;"	f
+wft?	obj-parser.lisp	/^(defun wft? (line) (analyze-wft line))$/;"	f
+wfv?	obj-parser.lisp	/^(defun wfv? (line) (analyze-wfv line))$/;"	f
+wfvn?	obj-parser.lisp	/^(defun wfvn? (line) (analyze-wfvn line))$/;"	f
+wfvt?	obj-parser.lisp	/^(defun wfvt? (line) (analyze-wfvt line))$/;"	f

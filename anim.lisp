@@ -1,0 +1,21 @@
+(in-package #:cl-game-models)
+
+(defclass md5anim ()
+  ((version :accessor md5anim-version :initform nil)
+   (num-of-frames :accessor md5anim-nframes :initform nil)
+   (num-of-joints :accessor md5anim-njoints :initform nil)
+   (frame-rate :accessor md5anim-frame-rate :initform nil)
+   (num-of-anim-comps :accessor md5anim-nanimcomps :initform nil)
+   (hierarchy :accessor md5anim-hierarchy :initform nil)
+   (boxes :accessor md5anim-boxes :initform nil)
+   (baseframe :accessor md5anim-baseframe :initform nil)
+   (frames :accessor md5anim-frames :initform nil)))
+
+(defclass box ()
+  ((min :accessor box-min :initform nil)
+   (max :accessor box-max :initform nil)))
+
+(defclass frame ()
+  ((index :accessor frame-index :initform nil)
+   (anim-comps :accessor frame-anim-comps :initform nil)
+   (joints :accessor frame-joints :initform nil)))

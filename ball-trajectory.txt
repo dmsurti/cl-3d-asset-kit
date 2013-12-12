@@ -1,0 +1,79 @@
+To calculate ball trajectory for bowling:
+========================================
+Assumption: When the bowler releases the ball, that point can be assumed
+to be the peak of the projectile motion path or the trajectory.
+
+Inputs: 
+1. Ball position at peak of the trajectory, which gives h 
+2. Point on the pitch where the ball will be pitched, which gives d (= R / 2)
+   where R = range of the trajectory
+
+Calculations:
+
+Given h; initial velocity y component is: vely = sqrt (* 2 h g)
+where g is 9.81
+
+Using vely, peak time: peakt = vely / g
+
+Hence total time for trajectory motion or max time: maxt= 2 * peakt
+
+Since we are using half the trajectory, at the peak, x = d. Then using 
+x = velx * t where velx = initial velocity x component
+	     and t = peak time
+
+Then velx = d / peakt
+
+Now using velx and vely while incrementing from peakt to maxt in increments
+of 1/24 or 1/30 based upon frame rate, the co-ordinates can be calculated
+as:
+
+x = velx * t
+and y = vely * t - g * t * t / 2
+
+ 
+To calculate ball trajectory for strokes:
+========================================
+
+Inputs:
+1. Ball speed after it hits the bat, or the initial velocity for the trajectory
+2. Point on the ground where ball will land, which gives R where
+   R = range of the trajectory
+
+Calculations:
+
+We can calculate the angle of elevation thetha as:
+
+thetha = (sin-inv (R * g / (vel * vel))) / 2 
+where sin-inv = sine inverse
+
+Using vel and angle of theta, initial x and y components of velocity are:
+velx = vel * cos thetha
+vely = vel * sin thetha
+
+Total time of flight is maxt = 2 * vely / g where
+vely / g = peakt , peak time
+
+Thus using velx and vely while incrementing from 0 to maxt in increments 
+of 1/24 or 1/30 based upon frame rate, the coordinates can be calculated
+as:
+
+x = velx * t
+and y = vely * t - g * t * t / 2
+
+-----
+
+Now you can repeat this for multiple ball bounce till it reaches the final landing point.
+
+For Ball Mesh
+=============
+
+For bowling as well as strokes; first up compute the trajectory vertices.
+
+For bowling, the rotation is always 90 anticlockwise along Y axis.
+
+For strokes, the rotation is angle between line formed between batsman position and
+(final) landing point; and the horizontal x axis.
+
+Now for each vertex of the trajectory path, compute the translations from the origin.
+Draw the ball mesh (gets drawan at origin) and apply those translations. Now
+apply the rotation. You will find the ball moving along the trajectory path!

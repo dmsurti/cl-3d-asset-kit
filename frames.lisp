@@ -1,0 +1,122 @@
+(in-package #:cl-game-models)
+
+(defun compute-anim-pos (flags skel-index j anim-comps)
+  (let ((anim-pos (make-instance 'vec)))
+    (with-slots (x y z) anim-pos
+      (when (flag-set? flags 1)
+	(setf x (nth (+ skel-index j) anim-comps))
+	(incf j))
+      (when (flag-set? flags 2)
+	(setf y (nth (+ skel-index j) anim-comps))
+	(incf j))
+      (when (flag-set? flags 4)
+       (setf z (nth (+ skel-index j) anim-comps))
+       (incf j)))
+    (values j anim-pos)))
+
+(defun compute-anim-ori (flags skel-index j anim-comps)
+  (let ((anim-ori (make-instance 'vec)))
+    (with-slots (x y z) anim-ori
+      (when (flag-set? flags 8)
+       (setf x (nth (+ skel-index j) anim-comps))
+       (incf j))
+      (when (flag-set? flags 16)
+       (setf y (nth (+ skel-index j) anim-comps))
+       (incf j))
+      (when (flag-set? flags 32)
+       (setf z (nth (+ skel-index j) anim-comps))
+       (incf j)))
+    (values j anim-ori)))
+
+(defun build-all-frame-skeletons (md5anim)
+  (dotimes (i (md5anim-nframes md5anim))
+    (let ((frame (nth i (md5anim-frames md5anim))))
+      (with-slots (anim-comps joints) frame 
+	(setf joints (build-frame-skeleton md5anim anim-comps))))))
+
+(defun build-frame-skeleton (md5anim anim-comps)
+  (let* ((acc))
+    (dotimes (i (md5anim-njoints md5anim))
+      (let* ((anim-pos (make-instance 'vec))
+	     (anim-ori (make-instance 'vec))
+	     (j 0)
+	     (new-joint (make-instance 'joint))
+	     (joint (nth i (md5anim-hierarchy md5anim))))
+	(with-slots (id name parent-id flags (skel-index start-index)) joint
+	  (with-slots ((nj-id id) (nj-name name) (nj-parent-id parent-id)
+		       (nj-pos position) (nj-ori orientation)) new-joint
+	    ;compute animated joint position and orientation
+	    (multiple-value-bind (ij pos)
+		    (compute-anim-pos flags skel-index j anim-comps)
+	      (setf j ij
+		    anim-pos pos))	 
+	    (multiple-value-bind (ij ori)
+		    (compute-anim-ori flags skel-index j anim-comps)
+	      (setf j ij
+		    anim-ori (compute-quat-ori-w ori)))
+	    (setf nj-name name nj-id id nj-parent-id parent-id)
+	    (if (< parent-id 0)
+	      (setf nj-pos anim-pos nj-ori anim-ori)
+	      (let* ((parent-joint (nth parent-id (reverse acc))))  
+		(with-slots ((pj-pos position) (pj-ori orientation)) parent-joint
+		  (let ((rpos (quat-rotate-point pj-ori anim-pos))
+			(new-joint-position (make-instance 'vec)))
+		      ;;;add positions for new joint
+		      (with-slots ((njx x) (njy y) (njz z)) new-joint-position
+			(with-slots ((rx x) (ry y) (rz z)) rpos
+			  (with-slots ((px x) (py y) (pz z)) pj-pos
+			    (setf njx (+ rx px) 
+				  njy (+ ry py) 
+				  njz (+ rz pz)
+				  nj-pos new-joint-position))))
+		      ;;;concatenate rotations
+		      (setf nj-ori (quat-normalize (quat-mult-quat pj-ori anim-ori)))))))))
+	 (push new-joint acc)))
+    (nreverse acc)))
+
+(defun flag-set? (flags bit)
+  (if (not (zerop (boole boole-and flags bit))) t))
+
+(defun interpolate-skeletons (frame1 frame2 njoints interp)
+  (format t "--- inside interpolate-skeletons ~%")
+  (let ((inter-frame (make-instance 'frame))
+	(acc))
+    (dotimes (i njoints)
+      (let* ((joint (make-instance 'joint))
+	     (pos (make-instance 'vec))
+	     (joint1 (nth i (frame-joints frame1)))
+	     (joint1-pos (joint-position joint1))
+	     (pos1x (vec-x joint1-pos)) (pos1y (vec-y joint1-pos)) (pos1z (vec-z joint1-pos))
+	     (joint2 (nth i (frame-joints frame2)))
+	     (joint2-pos (joint-position joint2))
+	     (pos2x (vec-x joint2-pos)) (pos2y (vec-y joint2-pos)) (pos2z (vec-z joint2-pos)))
+   	(format t " joint 1 is ~A and joint 2 is ~A " (joint-name joint1) (joint-name joint2))
+ 	(setf (vec-x pos) (+ pos1x (* interp (- pos2x pos1x))))
+ 	(setf (vec-y pos) (+ pos1y (* interp (- pos2y pos1y))))
+ 	(setf (vec-z pos) (+ pos1z (* interp (- pos2z pos1z))))
+	(setf (joint-parent-id joint) (joint-parent-id joint1))
+ 	(format t "   --Done with interpolated joint position ~%")
+	(setf (joint-position joint) pos)
+	(setf (joint-orientation joint)
+	      (quat-slerp (joint-orientation joint1)
+			  (joint-orientation joint2)
+			  interp))
+ 	(format t "   --Done with interpolated joint ~%")
+        (push joint acc)))
+    (setf (frame-joints inter-frame) (nreverse acc))
+    inter-frame)) 	
+
+
+(defun animate (md5anim anim-info dt)
+  (format t "--- inside animate ~%")
+  (incf (anim-last-time anim-info) dt)
+  (when (> (anim-last-time anim-info)
+	   (anim-max-time anim-info))
+    (incf (anim-curr-frame anim-info))
+    (incf (anim-next-frame anim-info))
+    (let ((max-frames (- (md5anim-nframes md5anim) 1)))
+      (if (> (anim-curr-frame anim-info) max-frames)
+	(setf (anim-curr-frame anim-info) 0))
+      (if (> (anim-next-frame anim-info) max-frames)
+	(setf (anim-next-frame anim-info) 0)))))
+   
