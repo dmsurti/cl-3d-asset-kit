@@ -157,17 +157,20 @@
 ;;; build md5 scene object
 ;;; ----------------------
 
-(defun make-md5-scene-object (mesh root texture-fn name fps)
+(defun make-md5-scene-object (mesh root texture-fn name fps
+                                   &key frames-writer-fn)
   (let ((meshes (load-mesh (get-full-path mesh root))))
     (funcall texture-fn meshes)
     (make-instance 'md5-scene-object
 		   :name name 
 		   :meshes meshes
+                   :frames-writer-fn frames-writer-fn
 		   :anim-info (make-anim-info fps))))
 
 (defun build-frame-block (scene-object anim-nframes
 			  &key iscale irotation itranslation itranslation-deltas
-			        event-name event-fn delta-fn frame-block-fn)
+			        event-name event-fn delta-fn frame-block-fn
+                                frame-block-name)
   (let ((frame-block (make-instance 'md5-scene-object
 				    :event-name event-name
 				    :event-fn event-fn)))
@@ -178,7 +181,9 @@
     (if delta-fn (specify-delta-fn frame-block delta-fn))
     (if frame-block-fn (specify-frame-fn frame-block frame-block-fn))
     (with-slots (num-of-frames) scene-object
-      (with-slots (start-frame end-frame) frame-block
+      (with-slots (start-frame end-frame 
+                               (block-name frame-block-name)) frame-block
+        (setf block-name frame-block-name) 
 	(if (= num-of-frames anim-nframes)
 	  (setf start-frame 0
 		end-frame (- num-of-frames 1))
@@ -189,7 +194,7 @@
 
 (defun add-pose-frames (scene-object anim root
 			&key iscale irotation itranslation itranslation-deltas
-			     event-name event-fn)
+			     event-name event-fn frame-block-name)
   (let ((anim (load-anim (get-full-path anim root))))
     (build-all-frame-skeletons anim)
     (prepare-all-meshes anim (scene-object-meshes scene-object) 
@@ -199,7 +204,8 @@
 		       :iscale iscale :irotation irotation :itranslation itranslation
 		       :itranslation-deltas itranslation-deltas 
 		       :event-name event-name
-		       :event-fn event-fn)
+		       :event-fn event-fn
+                       :frame-block-name frame-block-name)
     scene-object))
 
 ;;; ------------

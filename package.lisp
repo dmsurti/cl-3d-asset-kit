@@ -191,4 +191,5 @@
 	   #:redisplay-canvas
 	   #:group
 	   #:filter
-	   #:file-lines))
+	   #:file-lines
+           #:archive-fast-bowler))

@@ -38,6 +38,8 @@
 
 (defclass md5-scene-object (scene-object)
  ((anim-info :initarg :anim-info :accessor scene-object-anim-info :initform nil)
+  (frame-block-name :initarg :frame-block-name :initform nil :accessor frame-block-name) 
+  (frames-writer-fn :initarg :frames-writer-fn :initform nil :accessor frames-writer-fn)
   (frames :initarg :frames :accessor scene-object-frames :initform nil)
   (start-frame :initarg :start-frame :accessor frame-block-start-frame :initform nil)
   (end-frame :initarg :end-frame :accessor frame-block-end-frame :initform nil)

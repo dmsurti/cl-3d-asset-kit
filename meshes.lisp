@@ -109,6 +109,12 @@
 			(list x y z))))
 	      (mesh-vertices mesh))))
 
+(defun prepare-box-vertices (vertices)
+  (mapcar #'(lambda (vertex)
+              ;(format t "VERTEX IS ~A ~%" vertex)
+              (apply #'make-vector vertex))
+          vertices))
+
 (defun prepare-all-meshes (md5anim md5mesh vfn ifn tfn)
   (format t " ----- PROCESSING MESHES .... ~%")
   (with-slots (frames) md5anim
@@ -126,8 +132,10 @@
 	      (let ((mesh-frame (make-instance 'mesh)))
 		(with-slots (gl-vertices gl-normals) mesh-frame
                    (let* ((mesh-vertices (prepare-mesh-vertices mesh frame))
+                          (box-vertices (prepare-box-vertices mesh-vertices))
                           (mesh-normals (compute-frame-normals mesh-vertices
                                                                triangles)))
+                     (build-mesh-frame-axis-box mesh-frame box-vertices)
 		     (setf gl-vertices (funcall vfn mesh-vertices))
                      (setf gl-normals (funcall vfn mesh-normals))))
 		(setf (gethash total-frames mesh-frames) mesh-frame)

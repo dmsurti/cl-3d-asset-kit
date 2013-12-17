@@ -49,6 +49,10 @@
   (with-slots (vertices) mesh
     (build-axis-box mesh (mapcar #'vertex-pos vertices))))
 
+(defun build-mesh-frame-axis-box (mesh box-vertices)
+  (with-slots (vertices) mesh
+    (build-axis-box mesh box-vertices)))
+
 (defun prepare-axis-box (frames &key (iscale '(1.0 1.0 1.0))
 				     (itranslation '(0.0 0.0 0.0))
 				     (itranslation-deltas '(0.0 0.0 0.0))
