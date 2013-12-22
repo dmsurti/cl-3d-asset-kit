@@ -2,7 +2,7 @@
 
 (asdf:defsystem #:cl-game-models
   :serial t
-  :depends-on (#:cl-ppcre #:opticl #:cxml)
+  :depends-on (#:cl-ppcre #:opticl #:cxml #:ieee-floats)
   :components ((:file "package")
 	       (:file "utils")
 	       (:file "common")
@@ -35,5 +35,6 @@
 	       (:file "display")
 	       (:file "vectors")
 	       (:file "archiver")
+	       (:file "binary-archiver")
 	       (:file "opengl-pane")))
 

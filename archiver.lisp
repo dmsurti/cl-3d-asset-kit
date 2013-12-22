@@ -107,7 +107,7 @@
                       (format str "~A ~A ~A ~A~%" #\Tab xmin ymin zmin)))))))))
       (format str "}~%")))
 
-(defun archive-fast-bowler (scene-object out-dir)
+(defun archive-anim-frames (scene-object out-dir)
   (with-slots (num-of-frames frame-blocks meshes) 
         scene-object
     (let ((nframe 0)

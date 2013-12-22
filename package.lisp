@@ -1,7 +1,7 @@
 ;;;; package.lisp
 
 (defpackage #:cl-game-models
-  (:use #:cl #:opticl #:cxml)
+  (:use #:cl #:opticl #:cxml #:ieee-floats)
   (:export #:load-mesh
 	   #:load-anim
 	   #:load-obj
@@ -192,4 +192,5 @@
 	   #:group
 	   #:filter
 	   #:file-lines
-           #:archive-fast-bowler))
+           #:archive-anim-frames
+           #:archive-binary-anim-frames))
