@@ -44,6 +44,10 @@
   (start-frame :initarg :start-frame :accessor frame-block-start-frame :initform nil)
   (end-frame :initarg :end-frame :accessor frame-block-end-frame :initform nil)
   (frame-blocks :initarg :frame-blocks :accessor scene-object-frame-blocks :initform nil)
+  (show-ball :initarg :show-ball :accessor scene-object-show-ball :initform nil)
+  (show-bat :initarg :show-bat :accessor scene-object-show-bat :initform nil)
+  (ball-frames :initarg :ball-frames :accessor scene-object-ball-frames :initform (make-hash-table))
+  (bat-frames :initarg :bat-frames :accessor scene-object-bat-frames :initform (make-hash-table))
   (num-of-frames :initarg :num-of-frames :accessor scene-object-nframes :initform 0)))
 
 (defun make-scene ()

@@ -96,6 +96,31 @@
 ;;; build md5 vertex scene object
 ;;; -----------------------------
 
+(defun build-vertex-frames2 (anim-path root)
+  (let* ((anim-files (directory (get-full-path anim-path root)))
+	 (frames (make-hash-table))
+         (frame-nums nil))
+    (dolist (anim-file anim-files)
+      (format t "   ----  PROCESSING VERTEX ANIM FILE ----- ~A ~% " anim-file)
+      (let* ((meshes (load-obj (get-full-path anim-file root)))
+	     (regex ".*_(.*)\\.obj")
+	     (frame-num (parse-integer (cl-ppcre:register-groups-bind (num) 
+					   (regex (file-namestring anim-file)) 
+			 		 num))))
+        (push frame-num frame-nums)
+	(dolist (mesh (meshes-list meshes))
+          (build-wf-axis-box mesh)
+	  (prepare-mesh mesh #'gl-vertexes #'gl-indexes #'(lambda (vertices)
+							     (gl-texels vertices 
+									1.0 t))))
+	(setf (gethash frame-num frames) 
+	      meshes)))
+    (format t "===========VERTEX ANIM FRAMES ARE ~A ~%" frames)
+    (let ((sorted-frame-nums (sort frame-nums #'<=)))
+      (list (car sorted-frame-nums)
+            (car (last sorted-frame-nums))
+            frames))))
+
 (defun build-vertex-frames (anim-path root start-frame)
   (let* ((anim-files (directory (get-full-path anim-path root)))
 	 (frames (make-hash-table)))
@@ -130,7 +155,7 @@
 		        :iscale iscale :itranslation itranslation
 		        :itranslation-deltas itranslation-deltas)
       (setf num-of-frames (+ num-of-frames n))
-      (build-frame-block scene-object n
+      (build-frame-block scene-object n root
 				      :iscale iscale 
 				      :irotation irotation
 				      :itranslation itranslation
@@ -167,10 +192,11 @@
                    :frames-writer-fn frames-writer-fn
 		   :anim-info (make-anim-info fps))))
 
-(defun build-frame-block (scene-object anim-nframes
+(defun build-frame-block (scene-object anim-nframes root
 			  &key iscale irotation itranslation itranslation-deltas
 			        event-name event-fn delta-fn frame-block-fn
-                                frame-block-name)
+                                frame-block-name ball-frames? bat-frames?
+                                ball-dir bat-dir)
   (let ((frame-block (make-instance 'md5-scene-object
 				    :event-name event-name
 				    :event-fn event-fn)))
@@ -180,6 +206,11 @@
     (if itranslation-deltas (specify-translation-deltas frame-block itranslation-deltas))
     (if delta-fn (specify-delta-fn frame-block delta-fn))
     (if frame-block-fn (specify-frame-fn frame-block frame-block-fn))
+    (with-slots (show-ball show-bat) frame-block
+      (if ball-frames?
+        (setf show-ball t))
+      (if bat-frames?
+        (setf show-bat t)))
     (with-slots (num-of-frames) scene-object
       (with-slots (start-frame end-frame 
                                (block-name frame-block-name)) frame-block
@@ -190,22 +221,38 @@
 	  (setf start-frame (- num-of-frames anim-nframes)
 		end-frame (- num-of-frames 1)))))
     (incf (anim-max-frame-blocks (scene-object-anim-info scene-object)))
-    (add-frame-block scene-object frame-block)))
+    (add-frame-block scene-object frame-block)
+    (when ball-frames?
+      (format t "============= ADDING BALL FRAMES =========== ~%")
+      (with-slots (ball-frames) frame-block
+        (setf (gethash frame-block-name ball-frames)
+              (build-vertex-frames2 ball-dir root))))
+    (when bat-frames?
+      (format t "============= ADDING BAT FRAMES =========== ~%")
+      (with-slots (bat-frames) frame-block
+        (setf (gethash frame-block-name bat-frames)
+              (build-vertex-frames2 bat-dir root))))))
 
 (defun add-pose-frames (scene-object anim root
 			&key iscale irotation itranslation itranslation-deltas
-			     event-name event-fn frame-block-name)
+			     event-name event-fn frame-block-name
+                             ball-frames? bat-frames?
+                             ball-dir bat-dir)
   (let ((anim (load-anim (get-full-path anim root))))
     (build-all-frame-skeletons anim)
     (prepare-all-meshes anim (scene-object-meshes scene-object) 
 			#'gl-vertexes #'gl-indexes #'gl-texels)
     (add-frames scene-object (md5anim-frames anim))
-    (build-frame-block scene-object (md5anim-nframes anim)
+    (build-frame-block scene-object (md5anim-nframes anim) root
 		       :iscale iscale :irotation irotation :itranslation itranslation
 		       :itranslation-deltas itranslation-deltas 
 		       :event-name event-name
 		       :event-fn event-fn
-                       :frame-block-name frame-block-name)
+                       :frame-block-name frame-block-name
+                       :ball-frames? ball-frames?
+                       :bat-frames? bat-frames?
+                       :ball-dir ball-dir
+                       :bat-dir bat-dir)
     scene-object))
 
 ;;; ------------
@@ -421,7 +468,7 @@
       (prepare-axis-box vertex-frames
                         :iscale iscale :itranslation itranslation :delta-fn delta-fn)
       (setf num-of-frames (+ num-of-frames n))
-      (build-frame-block ball n
+      (build-frame-block ball n root
                               :irotation irotation
                               :event-name event-name
                               :event-fn event-fn

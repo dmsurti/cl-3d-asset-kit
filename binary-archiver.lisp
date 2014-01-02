@@ -33,7 +33,7 @@
   ;;; Since the binary is loaded at runtime in game in iOS,
   ;;; we will store all binary in little endian format
   ;;; so LSB goes first and MSB goes last
-  (format t "===========ARCHIVING FRAME================~%")
+  (format t "===========ARCHIVING BINARY FRAME================~%")
   (with-open-file (str out-file :direction :output
                                 :element-type 'unsigned-byte
                                 :if-exists :supersede

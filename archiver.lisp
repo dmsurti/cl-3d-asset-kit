@@ -162,14 +162,68 @@
         (let ((i-frame 0))
           (dolist (frame-block frame-blocks)
             (format t "---Writing frame block info ~%")
-            (with-slots (start-frame end-frame
-                                     frame-block-name) frame-block
+            (with-slots (start-frame end-frame frame-block-name
+                         show-ball show-bat ball-frames bat-frames) 
+                        frame-block
               (format str "frameblock ~A {~%" i-frame)
               (incf i-frame)
               ;;; TO DO: ADD FRAME NAME
               (format str "start ~A~%" start-frame)
               (format str "end ~A~%" end-frame)
               (format str "name ~A~%" frame-block-name)
+              (when show-ball
+                (format t "======THIS FRAME BLOCK HAS BALL FRAMES ~A ~%" ball-frames)
+                (let* ((ball-frames-data (gethash frame-block-name
+                                                  ball-frames))
+                       (start (car ball-frames-data))
+                       (end (cadr ball-frames-data))
+                       (ball-meshes-map (car (last ball-frames-data))))
+                  (format str "show-ball yes")
+                  (format str "start ~A" start)
+                  (format str "end ~A" end)
+                  (maphash #'(lambda (frame-num meshes)
+                               (let* ((archive-name (concatenate 'string
+                                                                frame-block-name
+                                                                "-ball-"
+                                                                (write-to-string
+                                                                  frame-num)
+                                                                ".smd"))
+                                     (ball-scene-object
+                                       (make-instance 'scene-object
+                                                      :name "anim-ball")))
+                                 (create-scene-object-archive ball-scene-object
+                                                      archive-name
+                                                      #p"~/cricket-game-assets/scene-objects-smd-txt/")))
+                           ball-meshes-map)))
+                (when show-bat
+                    (format t "======THIS FRAME BLOCK HAS BAT FRAMES ~A ~%" bat-frames)
+                    (let* ((bat-frames-data (gethash frame-block-name
+                                                      bat-frames))
+                           (start (car bat-frames-data))
+                           (end (cadr bat-frames-data))
+                           (bat-meshes-map (car (last bat-frames-data))))
+                      (format t "BAT MESHES ARE ~A ~%" bat-meshes-map)
+                      (format str "show-bat yes~%")
+                      (format str "start ~A~%" start)
+                      (format str "end ~A~%" end)
+                      (maphash #'(lambda (frame-num meshes)
+                                   (format t "------- Processing BAT Frame ~A ~%" frame-num)
+                                   (let* ((archive-name (concatenate 'string
+                                                                    frame-block-name
+                                                                    "-bat-"
+                                                                    (write-to-string
+                                                                      frame-num)
+                                                                    ".smd"))
+                                         (bat-scene-object
+                                           (make-instance 'scene-object
+                                                          :name "anim-bat"
+                                                          :meshes meshes)))
+                                     (format t "---- Creating bat frame archive for ~A frame ~%" 
+                                             frame-num)
+                                     (create-scene-object-archive bat-scene-object
+                                                          archive-name
+                                                          #p"~/cricket-game-assets/scene-objects-smd-txt/")))
+                               bat-meshes-map)))
               (format str "}~%~%"))))
         (format t "---Writing md5meshes with frame meshes~%")
         (with-slots (meshes frames-writer-fn) scene-object
