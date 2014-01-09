@@ -1,7 +1,7 @@
 (in-package #:cl-game-models)
 
 (defun load-obj (file)
-  (format t "--- inside load-obj ~A ~%" file)
+  ;(format t "--- inside load-obj ~A ~%" file)
   (let ((lines (file-lines file))
 	(wfmesh (make-instance 'meshes))
 	(all-meshes) (nv 1) (nvt 1) (nvn 1)) 
@@ -16,7 +16,7 @@
 	     (with-slots (name num-of-vertices vertices texture-key 
 			  num-of-triangles triangles orig-vertexes orig-triangles
 			  orig-textures orig-normals texture-keys) wfmesh 
-	       (format t "Loading a new mesh at line .... ~A ~%" n)
+	       ;(format t "Loading a new mesh at line .... ~A ~%" n)
 	       (setf name (parse-wfobj line))
 	       (do ((i (+ n 1) (+ i 1)))
 		   ((cond ((wfobj? (nth i lines))
@@ -46,7 +46,7 @@
 			 (t nil))))
 	       (incf nv (length m-vertexes))
 	       (incf nvt (length m-textures))
-  	       (format t " -- Number of normals is ~A ~% ---- " (length m-normals))
+  	       ;(format t " -- Number of normals is ~A ~% ---- " (length m-normals))
 	       (incf nvn (length m-normals))
 	       (setf num-of-triangles (length m-triangles))
 	       (setf triangles (build-triangles (reverse m-triangles)))
@@ -272,7 +272,7 @@
 		    
 
 (defun build-vertexes-with-textures (vertexes triangles textures)
-  (format t "--- inside build-vertexes-with-textures ~%")
+  ;(format t "--- inside build-vertexes-with-textures ~%")
   (let ((vtn-map nil))
     (dolist (tri triangles)
       (push (list (first tri) (fourth tri) (seventh tri)) vtn-map)

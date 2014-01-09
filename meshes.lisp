@@ -12,7 +12,7 @@
                  :vertex-pos vec))
 
 (defun prepare-mesh-indices (mesh)
-  (format t "--- inside prepare-mesh-indices ~%")
+  ;(format t "--- inside prepare-mesh-indices ~%")
   (let ((acc))
     (dolist (tri (mesh-triangles mesh))
       (push (triangle-v1 tri) acc)
@@ -21,7 +21,7 @@
     (nreverse acc)))
 
 (defun prepare-mesh-indices2 (culled-triangles)
-  (format t "--- inside prepare-mesh-indices2 ~%")
+  ;(format t "--- inside prepare-mesh-indices2 ~%")
   (let ((acc))
     (dolist (tri culled-triangles)
       (push (triangle-v1 tri) acc)
@@ -79,7 +79,7 @@
      (nreverse normals))))
 
 (defun prepare-mesh-vertices (mesh &optional frame)
-  (format t "--- inside prepare-mesh-vertices and frame is ~A ~%" frame)
+  ;(format t "--- inside prepare-mesh-vertices and frame is ~A ~%" frame)
   (if frame
     (let (acc)
       (dotimes (i (mesh-nvertices mesh))
@@ -116,14 +116,14 @@
           vertices))
 
 (defun prepare-all-meshes (md5anim md5mesh vfn ifn tfn)
-  (format t " ----- PROCESSING MESHES .... ~%")
+  ;(format t " ----- PROCESSING MESHES .... ~%")
   (with-slots (frames) md5anim
     (with-slots (meshes) md5mesh
       (dolist (mesh meshes)
         (let (acc)
 	  (with-slots (vertices gl-indices total-frames triangles
 		       indices-length gl-texels mesh-frames name) mesh
-            (format t " MD5MESH name is ~A ~%" name)
+            ;(format t " MD5MESH name is ~A ~%" name)
 	    (let ((mindices (prepare-mesh-indices mesh)))
 	      (setf gl-indices (funcall ifn mindices)) 
 	      (setf indices-length (length mindices)) 
@@ -142,7 +142,7 @@
 		(incf total-frames)))))))))
 
 (defun prepare-all-meshes2 (md5anim md5mesh camera camera-position frustum vfn ifn tfn &optional scale tr)
-  (format t " ----- PROCESSING MESHES .... ~%")
+  ;(format t " ----- PROCESSING MESHES .... ~%")
   (with-slots (frames) md5anim
     (with-slots (meshes) md5mesh
       (dolist (mesh meshes)
@@ -167,7 +167,7 @@
 	      (setf mesh-frames (nreverse acc)))))))))
 
 (defun prepare-mesh (wfmesh vfn ifn tfn)
-  (format t " ---  PROCESSING WF MESHES --- ~A ~%" (mesh-name wfmesh))
+  ;(format t " ---  PROCESSING WF MESHES --- ~A ~%" (mesh-name wfmesh))
   (with-slots (vertices gl-vertices gl-normals gl-indices gl-texels indices-length indices) wfmesh
     (let ((mvertices (prepare-mesh-vertices wfmesh))
 	  (mnormals (prepare-mesh-normals wfmesh))

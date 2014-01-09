@@ -97,7 +97,7 @@
 ;;; -----------------------------
 
 (defun build-vertex-frames2 (anim-path root)
-  (let* ((anim-files (directory (get-full-path anim-path root)))
+  (let* ((anim-files (directory (merge-pathnames "*.obj" anim-path)))
 	 (frames (make-hash-table))
          (frame-nums nil))
     (dolist (anim-file anim-files)
@@ -115,7 +115,7 @@
 									1.0 t))))
 	(setf (gethash frame-num frames) 
 	      meshes)))
-    (format t "===========VERTEX ANIM FRAMES ARE ~A ~%" frames)
+    ;(format t "===========VERTEX ANIM FRAMES ARE ~A ~%" frames)
     (let ((sorted-frame-nums (sort frame-nums #'<=)))
       (list (car sorted-frame-nums)
             (car (last sorted-frame-nums))

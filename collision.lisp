@@ -39,8 +39,8 @@
 	    (sort-vertices vertices #'vec-y)
 	  (multiple-value-bind (zmin zmax)
 	      (sort-vertices vertices #'vec-z)
-	    (format t "     ===== axis box bounds are : X:[~A ~A] Y:[~A ~A] Z:[~A ~A] ~%"
-			xmin xmax ymin ymax zmin zmax)
+	    ;(format t "     ===== axis box bounds are : X:[~A ~A] Y:[~A ~A] Z:[~A ~A] ~%"
+	;		xmin xmax ymin ymax zmin zmax)
 	    (setf axis-box (make-instance 'axis-box
   					  :min (make-vector xmin ymin zmin)
 		 			  :max (make-vector xmax ymax zmax)))))))))
@@ -58,20 +58,20 @@
 				     (itranslation-deltas '(0.0 0.0 0.0))
 				     delta-fn)
   (let ((translation itranslation))
-    (format t " ---- translation is ~A deltas is ~A ~% " translation itranslation-deltas)
+    ;(format t " ---- translation is ~A deltas is ~A ~% " translation itranslation-deltas)
     (maphash #'(lambda (frame-num frame)
 		  (with-slots (meshes) frame
 		    (dolist (mesh meshes)
-		      (format t " === BUILDING AXIS BOX FOR MESH ~A AT FRAME ~A " (mesh-name mesh) frame-num)
+		      ;(format t " === BUILDING AXIS BOX FOR MESH ~A AT FRAME ~A " (mesh-name mesh) frame-num)
 		      (with-slots (vertices) mesh
 			(let* ((pos-vertices (mapcar #'vertex-pos vertices))
 			       (scaled-vertices (scale-vertices pos-vertices iscale)))
 			  (setf translation (if delta-fn
 					      (progn
-					       (format t " ==== FOUND DELTA FN == ~%")
+					       ;(format t " ==== FOUND DELTA FN == ~%")
 					       (funcall delta-fn frame-num))
 					     (mapcar #'+ translation itranslation-deltas)))
-			  (format t "     ===== translation is ==== ~A ~% " translation)
+			  ;(format t "     ===== translation is ==== ~A ~% " translation)
 			  (build-axis-box mesh (translate-vertices scaled-vertices translation)))))))
 	     frames)))
 

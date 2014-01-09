@@ -190,7 +190,8 @@
                                                                 ".smd"))
                                      (ball-scene-object
                                        (make-instance 'scene-object
-                                                      :name "anim-ball")))
+                                                      :name "anim-ball"
+                                                      :meshes meshes)))
                                  (create-scene-object-archive ball-scene-object
                                                       archive-name
                                                       #p"~/cricket-game-assets/scene-objects-smd-txt/")))

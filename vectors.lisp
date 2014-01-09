@@ -39,7 +39,7 @@
   (gl-double-vector x y z w))
 
 (defun gl-vertexes (vertices)
-  (format t " ----- inside gl-vertexes -- ~%")
+  ;(format t " ----- inside gl-vertexes -- ~%")
   (let ((i 0) 
 	(mesh-vertices (make-gl-single-vector (* 3 (length vertices)))))
     (dolist (v vertices)
@@ -59,7 +59,7 @@
     mesh-vertices))
 
 (defun gl-indexes (indices)
-  (format t " ----- inside gl-indexes -- ~%")
+  ;(format t " ----- inside gl-indexes -- ~%")
   (let ((mesh-indices (make-gl-unsigned-int-vector (length indices))))
     (dotimes (i (length indices))
       (setf (opengl:gl-vector-aref mesh-indices i)
@@ -67,7 +67,7 @@
     mesh-indices))
 
 (defun gl-texels (vertices &optional (scale 1.0) (flip nil))
-  (format t " ------  inside gl-texels ---- ~%")
+  ;(format t " ------  inside gl-texels ---- ~%")
   (let* ((i 0)
 	 (mesh-texels (make-gl-single-vector (* 2 (length vertices)))))
     (dolist (vertex vertices)
