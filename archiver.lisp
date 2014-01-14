@@ -188,13 +188,11 @@
                                                                 (write-to-string
                                                                   frame-num)
                                                                 ".smd"))
-                                     (ball-scene-object
-                                       (make-instance 'scene-object
-                                                      :name "anim-ball"
-                                                      :meshes meshes)))
-                                 (create-scene-object-archive ball-scene-object
-                                                      archive-name
-                                                      #p"~/cricket-game-assets/scene-objects-smd-txt/")))
+                                      (out-file (merge-pathnames archive-name
+                                                                 out-dir))
+                                      (ball-mesh (car (meshes-list meshes))))
+                                  (archive-binary-accessory ball-mesh
+                                                            out-file)))
                            ball-meshes-map)))
                 (when show-bat
                     (format t "======THIS FRAME BLOCK HAS BAT FRAMES ~A ~%" bat-frames)
@@ -215,15 +213,13 @@
                                                                     (write-to-string
                                                                       frame-num)
                                                                     ".smd"))
-                                         (bat-scene-object
-                                           (make-instance 'scene-object
-                                                          :name "anim-bat"
-                                                          :meshes meshes)))
+                                           (out-file (merge-pathnames archive-name
+                                                                      out-dir))
+                                           (bat-mesh (car (meshes-list meshes))))
                                      (format t "---- Creating bat frame archive for ~A frame ~%" 
                                              frame-num)
-                                     (create-scene-object-archive bat-scene-object
-                                                          archive-name
-                                                          #p"~/cricket-game-assets/scene-objects-smd-txt/")))
+                                     (archive-binary-accessory bat-mesh
+                                                               out-file)))
                                bat-meshes-map)))
               (format str "}~%~%"))))
         (format t "---Writing md5meshes with frame meshes~%")
