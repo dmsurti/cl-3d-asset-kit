@@ -141,6 +141,30 @@
                   (archive-frame amesh i frame-smd-name out-file)))
               (incf mesh-id))))))))
 
+(defun create-vertex-animation-archive (anim-dir)
+  (let* ((frame-block-name (first (last (pathname-directory anim-dir))))
+         (anims (build-vertex-frames2 anim-dir))
+         (start (car anims))
+         (end (cadr anims))
+         (anim-frames (car (last anims))))
+    (format t "S:~A E:~A FRAMES:~A " start end anim-frames)
+    (maphash #'(lambda (frame-num meshes)
+                 (let ((mesh-id 1))
+                     (dolist (mesh (meshes-list meshes))
+                       (let ((out-file (merge-pathnames
+                                         (concatenate 'string
+                                                    frame-block-name
+                                                    "-m"
+                                                    (write-to-string mesh-id)
+                                                    "-"
+                                                    (write-to-string frame-num)
+                                                    ".smd")
+                                         #p"~/cricket-game-shared/sobs/")))
+                         (archive-binary-accessory mesh
+                                                   out-file)
+                         (incf mesh-id)))))
+             anim-frames)))
+
 (defmethod create-scene-object-archive ((scene-object md5-scene-object)
                                         archive-name
                                         out-dir)

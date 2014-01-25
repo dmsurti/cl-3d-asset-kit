@@ -30,8 +30,16 @@
 			     (+ (third translation) z))))
 	  vertices))
 
+(defun compute-origin-translation (xmin xmax ymin ymax)
+  ;;; This computes the origin as would be required by the objc opengl
+  ;;; which uses Y up and -Z forward. So translation is xmid * -1, 0, ymid
+  (format t "------Computing origin translation ----------- ~%")
+  (list (* (/ (+ xmin xmax) 2.0) -1.0)
+        0.0
+        (/ (+ ymin ymax) 2.0)))
+
 (defun build-axis-box (mesh vertices)
-  (with-slots (axis-box) mesh
+  (with-slots (axis-box orgin-translation) mesh
     (with-slots (min max) axis-box
       (multiple-value-bind (xmin xmax)
 	  (sort-vertices vertices #'vec-x)

@@ -47,6 +47,7 @@
 	   #:vec-z
 	   #:joint-parent-id
 	   #:meshes-list
+           #:create-vertex-animation-archive
 	   #:meshes-count
 	   #:mesh-name
 	   #:mesh-axis-box
@@ -94,6 +95,7 @@
  	   #:make-scene-object-with-textures-map
  	   #:make-primitive-scene-object 	   
  	   #:build-vertex-frames
+ 	   #:build-vertex-frames2
   	   #:add-vertex-frames
 	   #:make-md5-vertex-scene-object	  
 	   #:make-md5-scene-object

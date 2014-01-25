@@ -100,6 +100,7 @@
                   (vinfo (fourth infos))
                   (iinfo (fifth infos))
                   (axis-box (sixth infos))
+                  (origin-translation (seventh infos))
                   (texture-key (car (last infos))))
               ;(format str "~A numverts ~A~%" #\Tab num-of-vertices)
               (dolist (b (uint16->bytes num-of-vertices))
@@ -134,7 +135,7 @@
                   (dolist (b (uint32->bytes i))
                     (write-byte b str)))
               ;;; write axis box coordinates if present
-              (if axis-box
+              (when axis-box
                 (with-slots (min max) axis-box
                   (with-slots ((xmin x) (ymin y) (zmin z)) min
                     (with-slots ((xmax x) (ymax y) (zmax z)) max
@@ -158,7 +159,13 @@
                         (dolist (box-corner (list b1 b2 b3 b4 b5 b6 b7 b8)) 
                           (dolist (ab-elt box-corner)
                             (dolist (fb (float->bytes ab-elt))
-                              (write-byte fb str)))))))))))))))
+                              (write-byte fb str))))
+                        (with-slots (frame-translation)
+                            mesh
+                           (with-slots (x y z) frame-translation
+                             (dolist (elt (list x y z))
+                               (dolist (fb (float->bytes elt))
+                                   (write-byte fb str))))))))))))))))
 
 (defun archive-binary-anim-frames (scene-object out-dir)
   (with-slots (num-of-frames frame-blocks meshes) 
@@ -219,7 +226,7 @@
       (let ((all-info)
             (mesh amesh))
         (with-slots (gl-vertices gl-normals
-                    texture-key axis-box (sobj-name name)) 
+                    texture-key axis-box (sobj-name name))
                     mesh
          (format t "---- num of vertices --- ~A ~% " num-of-vertices)
          (format t "---- vertices --- ~A ~% " gl-vertices)
@@ -296,7 +303,7 @@
                   (dolist (b (uint32->bytes i))
                     (write-byte b str)))
               ;;; write axis box coordinates if present
-              (if axis-box
+              (when axis-box
                 (with-slots (min max) axis-box
                   (with-slots ((xmin x) (ymin y) (zmin z)) min
                     (with-slots ((xmax x) (ymax y) (zmax z)) max
@@ -320,4 +327,10 @@
                         (dolist (box-corner (list b1 b2 b3 b4 b5 b6 b7 b8)) 
                           (dolist (ab-elt box-corner)
                             (dolist (fb (float->bytes ab-elt))
-                              (write-byte fb str)))))))))))))))
+                              (write-byte fb str))))
+                        (with-slots (frame-translation)
+                            mesh
+                           (with-slots (x y z) frame-translation
+                             (dolist (elt (list x y z))
+                               (dolist (fb (float->bytes elt))
+                                   (write-byte fb str))))))))))))))))

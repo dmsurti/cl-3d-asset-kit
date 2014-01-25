@@ -115,9 +115,54 @@
               (apply #'make-vector vertex))
           vertices))
 
+(defun compute-mesh-frame-translation (mesh frame)
+  (let* ((root-bone-pos (joint-position (nth 0 (frame-joints frame))))
+         (left-palm-pos (joint-position (nth 15 (frame-joints frame))))
+         (root-inverse-tr (make-vector
+                            (* -1.0 (vec-x root-bone-pos))
+                            (vec-z root-bone-pos)
+                            (vec-y root-bone-pos)))); Y up, -Z forward, so no negation
+    (with-slots (frame-translation bat-location)
+        mesh
+      (format t "--------- Mesh frame adjustments -----------~%")
+      (format t " Root inverse translation ~A ~A ~A ~%"
+              (vec-x root-inverse-tr)
+              (vec-y root-inverse-tr)
+              (vec-z root-inverse-tr))
+      (setf frame-translation root-inverse-tr))))
+
+(defun compute-mesh-frame-bat-locations (md5anim)
+  (with-slots (frames bat-locations) md5anim
+    (setf bat-locations (make-hash-table :test #'equal))
+    (dolist (frame frames)
+      (with-slots (index) frame
+        (let* ((root-bone-pos (joint-position (nth 0 (frame-joints frame))))
+               (left-palm-pos (joint-position (nth 15 (frame-joints frame))))
+               (root-inverse-tr (make-vector
+                                  (* -1.0 (vec-x root-bone-pos))
+                                  (vec-z root-bone-pos)
+                                  (vec-y root-bone-pos))); Y up, -Z forward, so no negation
+               (left-palm-loc (with-slots (x y z) root-inverse-tr
+                                (make-vector
+                                  (+ x (vec-x left-palm-pos))
+                                  (+ y (vec-z left-palm-pos))
+                                  (+ z (* -1.0 (vec-y left-palm-pos)))))))
+          (format t "--------- Mesh frame bat location  -----------~%")
+          (format t " Root inverse translation ~A ~A ~A ~%"
+                  (vec-x root-inverse-tr)
+                  (vec-y root-inverse-tr)
+                  (vec-z root-inverse-tr))
+          (format t " Left palm <-> bat location ~A ~A ~A ~%"
+                  (vec-x left-palm-loc)
+                  (vec-y left-palm-loc)
+                  (vec-z left-palm-loc))
+          (setf (gethash index bat-locations)
+                left-palm-loc))))))
+
 (defun prepare-all-meshes (md5anim md5mesh vfn ifn tfn)
   ;(format t " ----- PROCESSING MESHES .... ~%")
   (with-slots (frames) md5anim
+    (compute-mesh-frame-bat-locations md5anim)
     (with-slots (meshes) md5mesh
       (dolist (mesh meshes)
         (let (acc)
@@ -136,6 +181,7 @@
                           (mesh-normals (compute-frame-normals mesh-vertices
                                                                triangles)))
                      (build-mesh-frame-axis-box mesh-frame box-vertices)
+                     (compute-mesh-frame-translation mesh-frame frame)
 		     (setf gl-vertices (funcall vfn mesh-vertices))
                      (setf gl-normals (funcall vfn mesh-normals))))
 		(setf (gethash total-frames mesh-frames) mesh-frame)

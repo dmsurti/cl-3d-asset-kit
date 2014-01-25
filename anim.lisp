@@ -9,6 +9,7 @@
    (hierarchy :accessor md5anim-hierarchy :initform nil)
    (boxes :accessor md5anim-boxes :initform nil)
    (baseframe :accessor md5anim-baseframe :initform nil)
+   (bat-locations :accessor md5anim-bat-locations :initform nil :initarg :bat-locations)
    (frames :accessor md5anim-frames :initform nil)))
 
 (defclass box ()

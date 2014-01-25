@@ -96,7 +96,26 @@
 ;;; build md5 vertex scene object
 ;;; -----------------------------
 
-(defun build-vertex-frames2 (anim-path root)
+(defun compute-bat-translation (mesh bat-location)
+  (with-slots (frame-translation) mesh
+    (assert (not (null bat-location)))
+    (with-slots (x y z) bat-location
+      (format t "------- Computing bat translation for location ~A ~A ~A ~%" 
+            x y z)
+      (let ((bat-vertex (vertex-pos (car (last (mesh-vertices mesh))))))
+        (assert (not (null bat-vertex)))
+        (with-slots ((bx x) (by y) (bz z))
+            bat-vertex
+          (format t "------- Bat vertex is ~A ~A ~A ~% "
+                bx by bz)
+          ; Scale bat vertex by 0.01
+          (setf frame-translation
+                (make-vector
+                  (- x (* bx 0.01))
+                  (- y (* by 0.01))
+                  (- z (* bz 0.01)))))))))
+
+(defun build-vertex-frames2 (anim-path &optional (root "") (locations nil))
   (let* ((anim-files (directory (merge-pathnames "*.obj" anim-path)))
 	 (frames (make-hash-table))
          (frame-nums nil))
@@ -112,7 +131,11 @@
           (build-wf-axis-box mesh)
 	  (prepare-mesh mesh #'gl-vertexes #'gl-indexes #'(lambda (vertices)
 							     (gl-texels vertices 
-									1.0 t))))
+									1.0 t)))
+          (if locations
+            (compute-bat-translation mesh
+                                     (gethash frame-num
+                                              locations))))
 	(setf (gethash frame-num frames) 
 	      meshes)))
     ;(format t "===========VERTEX ANIM FRAMES ARE ~A ~%" frames)
@@ -196,7 +219,8 @@
 			  &key iscale irotation itranslation itranslation-deltas
 			        event-name event-fn delta-fn frame-block-fn
                                 frame-block-name ball-frames? bat-frames?
-                                ball-dir bat-dir)
+                                ball-dir bat-dir
+                                bat-locations)
   (let ((frame-block (make-instance 'md5-scene-object
 				    :event-name event-name
 				    :event-fn event-fn)))
@@ -231,7 +255,9 @@
       (format t "============= ADDING BAT FRAMES =========== ~%")
       (with-slots (bat-frames) frame-block
         (setf (gethash frame-block-name bat-frames)
-              (build-vertex-frames2 bat-dir root))))))
+              (build-vertex-frames2 bat-dir 
+                                    root
+                                    bat-locations))))))
 
 (defun add-pose-frames (scene-object anim root
 			&key iscale irotation itranslation itranslation-deltas
@@ -241,7 +267,32 @@
   (let ((anim (load-anim (get-full-path anim root))))
     (build-all-frame-skeletons anim)
     (prepare-all-meshes anim (scene-object-meshes scene-object) 
-			#'gl-vertexes #'gl-indexes #'gl-texels)
+                            #'gl-vertexes #'gl-indexes #'gl-texels)
+    (add-frames scene-object (md5anim-frames anim))
+    (with-slots (bat-locations) anim
+      (build-frame-block scene-object (md5anim-nframes anim) root
+                       :iscale iscale :irotation irotation :itranslation itranslation
+                       :itranslation-deltas itranslation-deltas 
+                       :event-name event-name
+                       :event-fn event-fn
+                       :frame-block-name frame-block-name
+                       :ball-frames? ball-frames?
+                       :bat-frames? bat-frames?
+                       :ball-dir ball-dir
+                       :bat-dir bat-dir
+                       :bat-locations bat-locations))
+    scene-object))
+
+(defun add-vertex-pose-frames (scene-object anim root
+			&key iscale irotation itranslation itranslation-deltas
+			     event-name event-fn frame-block-name
+                             ball-frames? bat-frames?
+                             ball-dir bat-dir)
+ (let ((anims (build-vertex-frames2 (merge-pathnames 
+                                       (concatenate 'string
+                                            frame-block-name
+                                            "/")
+                                       #"~/cricket-game-assets/md5-vertex-meshes/batsman-anims/"))))
     (add-frames scene-object (md5anim-frames anim))
     (build-frame-block scene-object (md5anim-nframes anim) root
 		       :iscale iscale :irotation irotation :itranslation itranslation
