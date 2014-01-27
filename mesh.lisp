@@ -49,6 +49,10 @@
   (origin-tranlsation :accessor mesh-origin-translation :initform nil :initarg :origin-translation)
   (frame-translation :accessor mesh-frame-translation :initform nil :initarg :frame-translation)
   (bat-location :accessor mesh-bat-location :initform nil :initarg :mesh-bat-location)
+  (left-palm-location :accessor mesh-left-palm-location :initform nil 
+                      :initarg :mesh-left-palm-location)
+  (right-palm-location :accessor mesh-right-palm-location :initform nil 
+                       :initarg :mesh-right-palm-location)
   (num-of-triangles :accessor mesh-ntriangles :initform nil)
   (triangles :accessor mesh-triangles :initform nil)
   (line-color :accessor mesh-line-color :initarg :line-color :initform '(1.0 1.0 1.0))

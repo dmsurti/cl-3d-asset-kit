@@ -115,7 +115,9 @@
                   (- y (* by 0.01))
                   (- z (* bz 0.01)))))))))
 
-(defun build-vertex-frames2 (anim-path &optional (root "") (locations nil))
+(defun build-vertex-frames2 (anim-path &optional (root "") 
+                                       (locations nil)
+                                       attachment-fn)
   (let* ((anim-files (directory (merge-pathnames "*.obj" anim-path)))
 	 (frames (make-hash-table))
          (frame-nums nil))
@@ -133,9 +135,9 @@
 							     (gl-texels vertices 
 									1.0 t)))
           (if locations
-            (compute-bat-translation mesh
-                                     (gethash frame-num
-                                              locations))))
+            (funcall attachment-fn mesh
+                                   (gethash frame-num
+                                            locations))))
 	(setf (gethash frame-num frames) 
 	      meshes)))
     ;(format t "===========VERTEX ANIM FRAMES ARE ~A ~%" frames)
@@ -220,7 +222,7 @@
 			        event-name event-fn delta-fn frame-block-fn
                                 frame-block-name ball-frames? bat-frames?
                                 ball-dir bat-dir
-                                bat-locations)
+                                attach-locations)
   (let ((frame-block (make-instance 'md5-scene-object
 				    :event-name event-name
 				    :event-fn event-fn)))
@@ -257,19 +259,22 @@
         (setf (gethash frame-block-name bat-frames)
               (build-vertex-frames2 bat-dir 
                                     root
-                                    bat-locations))))))
+                                    attach-locations
+                                    #'compute-bat-translation))))))
 
 (defun add-pose-frames (scene-object anim root
 			&key iscale irotation itranslation itranslation-deltas
 			     event-name event-fn frame-block-name
                              ball-frames? bat-frames?
-                             ball-dir bat-dir)
+                             ball-dir bat-dir
+                             attach-joint)
   (let ((anim (load-anim (get-full-path anim root))))
     (build-all-frame-skeletons anim)
     (prepare-all-meshes anim (scene-object-meshes scene-object) 
-                            #'gl-vertexes #'gl-indexes #'gl-texels)
+                            #'gl-vertexes #'gl-indexes #'gl-texels
+                            attach-joint)
     (add-frames scene-object (md5anim-frames anim))
-    (with-slots (bat-locations) anim
+    (with-slots (attach-locations) anim
       (build-frame-block scene-object (md5anim-nframes anim) root
                        :iscale iscale :irotation irotation :itranslation itranslation
                        :itranslation-deltas itranslation-deltas 
@@ -280,7 +285,7 @@
                        :bat-frames? bat-frames?
                        :ball-dir ball-dir
                        :bat-dir bat-dir
-                       :bat-locations bat-locations))
+                       :attach-locations attach-locations))
     scene-object))
 
 (defun add-vertex-pose-frames (scene-object anim root

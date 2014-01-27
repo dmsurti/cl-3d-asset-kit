@@ -165,6 +165,18 @@
                            (with-slots (x y z) frame-translation
                              (dolist (elt (list x y z))
                                (dolist (fb (float->bytes elt))
+                                   (write-byte fb str)))))
+                        (with-slots (left-palm-location)
+                            mesh
+                           (with-slots (x y z) left-palm-location
+                             (dolist (elt (list x y z))
+                               (dolist (fb (float->bytes elt))
+                                   (write-byte fb str)))))
+                        (with-slots (right-palm-location)
+                            mesh
+                           (with-slots (x y z) right-palm-location
+                             (dolist (elt (list x y z))
+                               (dolist (fb (float->bytes elt))
                                    (write-byte fb str))))))))))))))))
 
 (defun archive-binary-anim-frames (scene-object out-dir)
