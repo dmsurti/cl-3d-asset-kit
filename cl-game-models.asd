@@ -36,5 +36,6 @@
 	       (:file "vectors")
 	       (:file "archiver")
 	       (:file "binary-archiver")
-	       (:file "opengl-pane")))
+	       (:file "opengl-pane")
+               (:file "demo")))
 

@@ -189,7 +189,7 @@
         (let (acc)
 	  (with-slots (vertices gl-indices total-frames triangles
 		       indices-length gl-texels mesh-frames name) mesh
-            ;(format t " MD5MESH name is ~A ~%" name)
+            (format t " MD5MESH name is ~A ~%" name)
 	    (let ((mindices (prepare-mesh-indices mesh)))
 	      (setf gl-indices (funcall ifn mindices)) 
 	      (setf indices-length (length mindices)) 
@@ -202,7 +202,7 @@
                           (mesh-normals (compute-frame-normals mesh-vertices
                                                                triangles)))
                      (build-mesh-frame-axis-box mesh-frame box-vertices)
-                     (compute-mesh-frame-translation mesh-frame frame)
+                     ; (compute-mesh-frame-translation mesh-frame frame)
 		     (setf gl-vertices (funcall vfn mesh-vertices))
                      (setf gl-normals (funcall vfn mesh-normals))))
 		(setf (gethash total-frames mesh-frames) mesh-frame)

@@ -195,4 +195,6 @@
 	   #:filter
 	   #:file-lines
            #:archive-anim-frames
-           #:archive-binary-anim-frames))
+           #:archive-binary-anim-frames
+           #:make-md5-mesh-scene-with-animations
+           #:demo-scene))

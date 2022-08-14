@@ -12,7 +12,7 @@
 	 (size (apply #'* (array-dimensions texels-arr)))
 	 (texels (coerce-array-to-list texels-arr)))
       (with-image-bounds (height width) texels-arr
-        ;(format t " -----  inside load texture --- ~A : ~A ~A ~%" path height width)
+        (format t " -----  inside load texture --- ~A : ~A ~A ~%" path height width)
 	(make-instance 'texture
 			:texels (funcall fn texels)
 			:scale (if scale scale 1.0)

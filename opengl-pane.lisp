@@ -7,8 +7,9 @@
 (defun initialize-scene-world (canvas)
   (load-textures canvas (get-scene-world))
   (load-scene-object-buffers canvas (get-scene-world))
-  (load-primitive-object-buffers canvas (get-scene-world))
-  (load-dynamic-primitive-object-buffers canvas (get-scene-world)))
+  ;;(load-primitive-object-buffers canvas (get-scene-world))
+  ;;(load-dynamic-primitive-object-buffers canvas (get-scene-world))
+  )
 
 (defun initialize-a-scene-object (canvas scene-object)
     (opengl:rendering-on (canvas)

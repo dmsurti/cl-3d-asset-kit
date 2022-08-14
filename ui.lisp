@@ -52,7 +52,7 @@
 	 ;;; setting up transformations for scene object 
 	 ;;; -------------------------------------------
 	  
-	 (apply-transformations scene-object)
+	 ;(apply-transformations scene-object)
 	  
 	 (with-slots (lights) (get-scene-world)
 	   (dolist (light lights)
