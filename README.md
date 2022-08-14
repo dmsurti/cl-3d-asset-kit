@@ -1,17 +1,17 @@
-This is a prototype implementation of parsing and viewing Quake MD5 meshes with skeletal animations
-and Wavefront meshes with vertex animation.
+This is a __prototype implementation__ of parsing and viewing Quake MD5 meshes with skeletal
+animations and Wavefront meshes with vertex animation.
 
-This implementation depends upon [Lispworks OpenGL
-bindings](http://www.lispworks.com/documentation/lw51/RNIG/html/readme-274.htm)
+This __implementation depends upon [Lispworks OpenGL
+bindings](http://www.lispworks.com/documentation/lw51/RNIG/html/readme-274.htm)__
 
 A sample 3D asset is provided in assets/bob folder. The following are the instructions to view this 
-sample MD5 mesh.
+sample Quake MD5 mesh.
 
 Prerequisites
 -------------
 
-I have testd this only with Lispworks 6.0 and Lispworks 8.0, the latter which I am using now. You
-should use Lisworks 8.0 if you are running this on Apple Silicon.
+I have tested this only with Lispworks 6.0 and Lispworks 8.0, the latter which I am using now. You
+should use Lispworks 8.0 if you are running this on Apple Silicon.
 
 I haven't tested this on Windows/Linux platforms but it should most likely work on these platforms
 as well.
@@ -21,14 +21,14 @@ Running the demo
 
 1. Start Lispworks.
 
-2. In the listenera, load the Lispworks OpenGL bindings. Ensure the path to your Lispworks
+2. In the listener, load the Lispworks OpenGL bindings. Ensure the path to your Lispworks
 installation is correct.
 
 ```
  (load "/Applications/LispWorks\ 8.0\ \(64-bit\)/Library/lib/8-0-0-0/examples/opengl/load")
 ```
 
-3. Clone this repo to your `quicklisp/local-projects`.
+3. Clone this repository to your `quicklisp/local-projects`.
 
 4. In the listener, now load this project.
 
@@ -36,7 +36,7 @@ installation is correct.
 (ql:quickload :cl-game-models)
 ```
 
-5. To run the demo, eval this form in the listener.
+5. To run the demo, evaluate this form in the listener.
 ```
 (cl-game-models:demo-scene)
 ```
