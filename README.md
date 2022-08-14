@@ -44,3 +44,10 @@ installation is correct.
 You will see the bob animation playing in an Lispworks OpenGL pane.
 
 ![Quake MD5 animation](./Bob-Lisp-Animation.gif)
+
+About License
+-------------
+
+Please note that the sample asset provided under `assets/bob/` folder is
+copyrighted. Please note that the [license](./assets/bob/bob.source.txt) for this asset are
+independent of the license of this repository and you must reproduce the asset license as well. 
